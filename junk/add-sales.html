@@ -23,6 +23,8 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
     <link rel="stylesheet" href="assets/css/animate.css" />
 
     <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css" />
@@ -316,9 +318,7 @@
                   <span class="menu-arrow"></span
                 ></a>
                 <ul>
-                  <li>
-                    <a href="productlist.html" class="active">Product List</a>
-                  </li>
+                  <li><a href="productlist.html">Product List</a></li>
                   <li><a href="addproduct.html">Add Product</a></li>
                   <li><a href="categorylist.html">Category List</a></li>
                   <li><a href="addcategory.html">Add Category</a></li>
@@ -340,8 +340,8 @@
                 <ul>
                   <li><a href="saleslist.html">Sales List</a></li>
                   <li><a href="pos.html">POS</a></li>
-                  <li><a href="pos.html">New Sales</a></li>
-                  <li><a href="salesreturnlists.html">Sales Return List</a></li>
+                  <li><a href="pos.html" class="active">New Sales</a></li>
+                  <li><a href="salesreturnlist.html">Sales Return List</a></li>
                   <li>
                     <a href="createsalesreturns.html">New Sales Return</a>
                   </li>
@@ -594,7 +594,7 @@
                 ></a>
                 <ul>
                   <li><a href="newuser.html">New User </a></li>
-                  <li><a href="userlists.html">Users List</a></li>
+                  <li><a href="userlist.html">Users List</a></li>
                 </ul>
               </li>
               <li class="submenu">
@@ -622,153 +622,224 @@
         <div class="content">
           <div class="page-header">
             <div class="page-title">
-              <h4>Product Edit</h4>
-              <h6>Update your product</h6>
+              <h4>Add Sale</h4>
+              <h6>Add your new sale</h6>
             </div>
           </div>
-
           <div class="card">
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-3 col-sm-6 col-12">
                   <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" value="Macbook pro" />
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Category</label>
-                    <select class="select">
-                      <option>Computers</option>
-                      <option>Mac</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Sub Category</label>
-                    <select class="select">
-                      <option>None</option>
-                      <option>option1</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Brand</label>
-                    <select class="select">
-                      <option>None</option>
-                      <option>option1</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Unit</label>
-                    <select class="select">
-                      <option>Piece</option>
-                      <option>Kg</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>SKU</label>
-                    <input type="text" value="PT0002" />
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Minimum Qty</label>
-                    <input type="text" value="5" />
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="text" value="50" />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control">
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</textarea
-                    >
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Tax</label>
-                    <select class="select">
-                      <option>Choose Tax</option>
-                      <option>2%</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Discount Type</label>
-                    <select class="select">
-                      <option>Percentage</option>
-                      <option>10%</option>
-                      <option>20%</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label>Price</label>
-                    <input type="text" value="1500.00" />
-                  </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                  <div class="form-group">
-                    <label> Status</label>
-                    <select class="select">
-                      <option>Active</option>
-                      <option>Open</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label> Product Image</label>
-                    <div class="image-upload">
-                      <input type="file" />
-                      <div class="image-uploads">
-                        <img src="assets/img/icons/upload.svg" alt="img" />
-                        <h4>Drag and drop a file to upload</h4>
+                    <label>Customer</label>
+                    <div class="row">
+                      <div class="col-lg-10 col-sm-10 col-10">
+                        <select class="select">
+                          <option>Choose</option>
+                          <option>Customer Name</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-2 col-sm-2 col-2 ps-0">
+                        <div class="add-icon">
+                          <span
+                            ><img src="assets/img/icons/plus1.svg" alt="img"
+                          /></span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12">
-                  <div class="product-list">
-                    <ul class="row">
-                      <li>
-                        <div class="productviews">
-                          <div class="productviewsimg">
-                            <img src="assets/img/icons/macbook.svg" alt="img" />
-                          </div>
-                          <div class="productviewscontent">
-                            <div class="productviewsname">
-                              <h2>macbookpro.jpg</h2>
-                              <h3>581kb</h3>
-                            </div>
-                            <a href="javascript:void(0);" class="hideset">x</a>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Customer</label>
+                    <div class="input-groupicon">
+                      <input
+                        type="text"
+                        placeholder="Choose Date"
+                        class="datetimepicker"
+                      />
+                      <a class="addonset">
+                        <img src="assets/img/icons/calendars.svg" alt="img" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Supplier</label>
+                    <select class="select">
+                      <option>Choose</option>
+                      <option>Supplier Name</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Product Name</label>
+                    <div class="input-groupicon">
+                      <input
+                        type="text"
+                        placeholder="Please type product code and select..."
+                      />
+                      <div class="addonset">
+                        <img src="assets/img/icons/scanners.svg" alt="img" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="table-responsive mb-3">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>QTY</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Tax</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td class="productimgname">
+                          <a class="product-img">
+                            <img
+                              src="assets/img/product/product7.jpg"
+                              alt="product"
+                            />
+                          </a>
+                          <a href="javascript:void(0);">Apple Earpods</a>
+                        </td>
+                        <td>1.00</td>
+                        <td>15000.00</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>1500.00</td>
+                        <td>
+                          <a href="javascript:void(0);" class="delete-set"
+                            ><img src="assets/img/icons/delete.svg" alt="svg"
+                          /></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td class="productimgname">
+                          <a class="product-img">
+                            <img
+                              src="assets/img/product/product8.jpg"
+                              alt="product"
+                            />
+                          </a>
+                          <a href="javascript:void(0);">iPhone 11</a>
+                        </td>
+                        <td>1.00</td>
+                        <td>1500.00</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>1500.00</td>
+                        <td>
+                          <a href="javascript:void(0);" class="delete-set"
+                            ><img src="assets/img/icons/delete.svg" alt="svg"
+                          /></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td class="productimgname">
+                          <a class="product-img">
+                            <img
+                              src="assets/img/product/product1.jpg"
+                              alt="product"
+                            />
+                          </a>
+                          <a href="javascript:void(0);">Macbook pro</a>
+                        </td>
+                        <td>1.00</td>
+                        <td>1500.00</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>1500.00</td>
+                        <td>
+                          <a href="javascript:void(0);" class="delete-set"
+                            ><img src="assets/img/icons/delete.svg" alt="svg"
+                          /></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Order Tax</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Discount</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Shipping</label>
+                    <input type="text" />
+                  </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label>Status</label>
+                    <select class="select">
+                      <option>Choose Status</option>
+                      <option>Completed</option>
+                      <option>Inprogress</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="total-order w-100 max-widthauto m-auto mb-4">
+                      <ul>
+                        <li>
+                          <h4>Order Tax</h4>
+                          <h5>$ 0.00 (0.00%)</h5>
+                        </li>
+                        <li>
+                          <h4>Discount</h4>
+                          <h5>$ 0.00</h5>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="total-order w-100 max-widthauto m-auto mb-4">
+                      <ul>
+                        <li>
+                          <h4>Shipping</h4>
+                          <h5>$ 0.00</h5>
+                        </li>
+                        <li class="total">
+                          <h4>Grand Total</h4>
+                          <h5>$ 0.00</h5>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <a href="javascript:void(0);" class="btn btn-submit me-2"
-                    >Update</a
+                    >Submit</a
                   >
-                  <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                  <a href="javascript:void(0);" class="btn btn-cancel"
+                    >Cancel</a
+                  >
                 </div>
               </div>
             </div>
@@ -789,6 +860,9 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/plugins/select2/js/select2.min.js"></script>
+
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 
     <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>

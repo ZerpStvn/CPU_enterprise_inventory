@@ -9,9 +9,9 @@
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Login - Pos admin template</title>
+  <title>Login | CPU enterprise</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
+  <!-- //<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" /> -->
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
@@ -21,19 +21,30 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
+
 <body class="account-page">
+  <?php
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header("Location: home.php");
+    exit();
+  }
+  ?>
   <div class="main-wrapper">
     <div class="account-content">
       <div class="login-wrapper">
         <div class="login-content">
           <div class="login-userset">
             <div class="login-logo">
-              <img src="assets/img/logo.png" alt="img" />
+              <img src="assets/img/cpulogo.png" alt="img" />
             </div>
             <div class="login-userheading">
               <h3>Sign In</h3>
               <h4>Please login to your account</h4>
             </div>
+
+
             <form action="login.php" method="POST">
               <div class="form-login">
                 <label>Email</label>
@@ -52,7 +63,7 @@
               <div class="form-login">
                 <div class="alreadyuser">
                   <h4>
-                    <a href="forgetpassword.html" class="hover-a">Forgot Password?</a>
+                    <a href="forgetpassword.php" class="hover-a">Forgot Password?</a>
                   </h4>
                 </div>
               </div>
@@ -63,8 +74,8 @@
 
             <div class="signinform text-center">
               <h4>
-                Don’t have an account?
-                <a href="signup.html" class="hover-a">Sign Up</a>
+                Dont have an account?
+                <a href="signup.php" class="hover-a">Sign Up</a>
               </h4>
             </div>
           </div>

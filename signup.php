@@ -9,9 +9,9 @@
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Login - Pos admin template</title>
+    <title>Sign up</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -29,7 +29,7 @@
                 <div class="login-content">
                     <div class="login-userset">
                         <div class="login-logo">
-                            <img src="assets/img/logo.png" alt="img">
+                            <img src="assets/img/cpulogo.png" alt="img">
                         </div>
                         <div class="login-userheading">
                             <h3>Create an Account</h3>
@@ -47,6 +47,13 @@
                                 <label>School ID</label>
                                 <div class="form-addons">
                                     <input type="text" name="schoolID" placeholder="Enter your School ID">
+                                    <img src="assets/img/icons/users1.svg" alt="img">
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <label>Mobile number</label>
+                                <div class="form-addons">
+                                    <input type="text" name="mobile_number" placeholder="Mobile number">
                                     <img src="assets/img/icons/users1.svg" alt="img">
                                 </div>
                             </div>
