@@ -27,14 +27,26 @@
     $user_id = $_SESSION['user_id'];
     $user_name = $_SESSION['user_name'];
     $user_role = $_SESSION['user_role'];
+    $schoolID = $_SESSION['schoolID'];
     ?>
     <div class="header">
-        <div class="header-left active">
-            <a href="home.php" class="logo">
-                <img src="assets/img/cpulogo.png" alt="" />
-            </a>
-            <a id="toggle_btn" href="javascript:void(0);"> </a>
-        </div>
+        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'student'): ?>
+            <div class="header-left active">
+                <a href="reservationStudent.php" class="logo">
+                    <img src="assets/img/cpulogo.png" alt="" />
+                </a>
+                <a id="toggle_btn" href="javascript:void(0);"> </a>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+            <div class="header-left active">
+                <a href="home.php" class="logo">
+                    <img src="assets/img/cpulogo.png" alt="" />
+                </a>
+                <a id="toggle_btn" href="javascript:void(0);"> </a>
+            </div>
+
+        <?php endif; ?>
 
         <a id="mobile_btn" class="mobile_btn" href="#sidebar">
             <span class="bar-icon">

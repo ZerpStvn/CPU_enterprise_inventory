@@ -21,23 +21,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
-        // Store user data in session variables for access in other pages
-        session_start();
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['name'];
-        $_SESSION['user_role'] = $user['role'];
 
-        // Close the statement and database connection
-        $stmt->close();
-        $connection->close();
+        if ($user['status'] == 'Active') {
+            // Store user data in session variables for access in other pages
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['schoolID'] = $user['schoolID'];
+            $_SESSION['user_role'] = $user['role'];
 
-        // Redirect user based on their role
-        if ($user['role'] == 'admin') {
-            header("Location: home.php");
+            // Close the statement and database connection
+            $stmt->close();
+            $connection->close();
+
+            // Redirect user based on their role
+            if ($user['role'] == 'admin') {
+                header("Location: home.php");
+            } else {
+                header("Location: reservationStudent.php");
+            }
+            exit();
         } else {
-            header("Location: home.php");
+            echo "<script>alert('You are restricted to access. Please contact an administrator.');</script>";
         }
-        exit();
     } else {
         echo "<script>alert('Invalid email or password.');</script>";
     }

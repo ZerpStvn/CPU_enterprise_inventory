@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $schoolID = sanitizeInput($_POST["schoolID"]);
     $password = sanitizeInput($_POST["password"]);
     $mobilenumber = sanitizeInput($_POST["mobile_number"]);
-    $role = "student";
+    $role = sanitizeInput($_POST["role"]);
     $status = "Active"; // Default value for status
 
     $checkQuery = "SELECT * FROM users WHERE email = '$email'";
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insertResult = $stmt->execute();
 
     if ($insertResult) {
-        header("Location: index.php");
+        header("Location: userlists.php");
         exit();
     } elseif (!$stmt) {
         die("Error: " . mysqli_error($connection));

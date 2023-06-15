@@ -57,8 +57,14 @@
                                 Reservation</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="quotationList.php">Reservation List</a></li>
+                            <li><a href="reservationStudent.php">Product</a></li>
+                            <li><a href="reservationStudent.php">Reservation Record</a></li>
                         </ul>
+                    </li>
+                    <li class="">
+                        <a href="userlist.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
+                                Request</span>
+                        </a>
                     </li>
                     <li class="submenu">
                         <a href="javascript:void(0);"><img src="assets/img/icons/settings.svg" alt="img" /><span>

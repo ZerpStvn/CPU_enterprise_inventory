@@ -162,7 +162,7 @@
                     <th>SKU</th>
                     <th>Category</th>
                     <th>Quantity</th>
-                    <th>on Stock</th>
+                    <th>Stocks</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>

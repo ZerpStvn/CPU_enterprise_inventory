@@ -561,6 +561,7 @@ $(document).ready(function () {
       ).addClass("active");
     }
   });
+
   $("#imageFile").on("change", function (e) {
     alert("image added");
     var file = e.target.files[0];
