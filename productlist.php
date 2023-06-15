@@ -9,9 +9,9 @@
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Inventory | Product</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" /> -->
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
@@ -139,6 +139,15 @@
               </div>
             </div>
 
+            <?php
+            include 'config.php';
+
+            // Fetch inventory data from the database
+            $sql = "SELECT * FROM inventory";
+            $result = mysqli_query($connection, $sql);
+
+            ?>
+
             <div class="table-responsive">
               <table class="table datanew">
                 <thead>
@@ -152,393 +161,106 @@
                     <th>Product Name</th>
                     <th>SKU</th>
                     <th>Category</th>
-                    <th>Brand</th>
-                    <th>price</th>
-                    <th>Unit</th>
-                    <th>Qty</th>
-                    <th>Created By</th>
+                    <th>Quantity</th>
+                    <th>on Stock</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product1.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Macbook pro</a>
-                    </td>
-                    <td>PT001</td>
-                    <td>Computers</td>
-                    <td>N/D</td>
-                    <td>1500.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.php">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product2.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Orange</a>
-                    </td>
-                    <td>PT002</td>
-                    <td>Fruits</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product3.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Pineapple</a>
-                    </td>
-                    <td>PT003</td>
-                    <td>Fruits</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product4.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Strawberry</a>
-                    </td>
-                    <td>PT004</td>
-                    <td>Fruits</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product5.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Avocat</a>
-                    </td>
-                    <td>PT005</td>
-                    <td>Accessories</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>150.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product6.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Macbook Pro</a>
-                    </td>
-                    <td>PT006</td>
-                    <td>Shoes</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product7.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Apple Earpods</a>
-                    </td>
-                    <td>PT007</td>
-                    <td>Shoes</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product8.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">iPhone 11 </a>
-                    </td>
-                    <td>PT008</td>
-                    <td>Fruits</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product9.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">samsung </a>
-                    </td>
-                    <td>PT009</td>
-                    <td>Earphones</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>pc</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product11.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Banana</a>
-                    </td>
-                    <td>PT0010</td>
-                    <td>Health Care</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>kg</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="checkboxs">
-                        <input type="checkbox" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </td>
-                    <td class="productimgname">
-                      <a href="javascript:void(0);" class="product-img">
-                        <img src="assets/img/product/product17.jpg" alt="product" />
-                      </a>
-                      <a href="javascript:void(0);">Limon</a>
-                    </td>
-                    <td>PT0011</td>
-                    <td>Health Care</td>
-                    <td>N/D</td>
-                    <td>10.00</td>
-                    <td>kg</td>
-                    <td>100.00</td>
-                    <td>Admin</td>
-                    <td>
-                      <a class="me-3" href="product-details.php">
-                        <img src="assets/img/icons/eye.svg" alt="img" />
-                      </a>
-                      <a class="me-3" href="editproduct.html">
-                        <img src="assets/img/icons/edit.svg" alt="img" />
-                      </a>
-                      <a class="confirm-text" href="javascript:void(0);">
-                        <img src="assets/img/icons/delete.svg" alt="img" />
-                      </a>
-                    </td>
-                  </tr>
+
+                  <?php
+                  if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $productId = $row['id'];
+                      $productName = $row['product_name'];
+                      $sku = $row['sku'];
+                      $category = $row['category'];
+                      $minimumQuantity = $row['minimum_quantity'];
+                      $onStock = $row['on_stock'];
+                      $status = $row['status'];
+                      $image = $row['image'];
+                      ?>
+
+                      <tr>
+                        <td>
+                          <label class="checkboxs">
+                            <input type="checkbox" />
+                            <span class="checkmarks"></span>
+                          </label>
+                        </td>
+                        <td class="productimgname">
+                          <a href="javascript:void(0);" class="product-img">
+                            <img src="<?php echo $image; ?>" alt="product" />
+                          </a>
+                          <a href="javascript:void(0);">
+                            <?php echo $productName; ?>
+                          </a>
+                        </td>
+                        <td>
+                          <?php echo $sku; ?>
+                        </td>
+                        <td>
+                          <?php echo $category; ?>
+                        </td>
+                        <td>
+                          <?php echo $minimumQuantity; ?>
+                        </td>
+                        <td>
+                          <?php echo $onStock; ?>
+                        </td>
+                        <td>
+                          <?php echo $status; ?>
+                        </td>
+                        <td>
+                          <a class="me-3" href="product-details.php?id=<?php echo $productId; ?>">
+                            <img src="assets/img/icons/eye.svg" alt="img" />
+                          </a>
+                          <a class="me-3" href="editproduct.php?id=<?php echo $productId; ?>">
+                            <img src="assets/img/icons/edit.svg" alt="img" />
+                          </a>
+                          <a class="confirm-text" href="productdelete.php?id=<?php echo $productId; ?>">
+                            <img src="assets/img/icons/delete.svg" alt="img" />
+                          </a>
+                        </td>
+                      </tr>
+
+                      <?php
+                    }
+                  } else {
+                    echo '<tr><td colspan="8">No records found.</td></tr>';
+                  }
+
+                  mysqli_free_result($result);
+                  mysqli_close($connection);
+                  ?>
+
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
 
-  <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/feather.min.js"></script>
 
-  <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
 
-  <script src="assets/js/jquery.dataTables.min.js"></script>
-  <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
 
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-  <script src="assets/plugins/select2/js/select2.min.js"></script>
+    <script src="assets/plugins/select2/js/select2.min.js"></script>
 
-  <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-  <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+    <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
-  <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

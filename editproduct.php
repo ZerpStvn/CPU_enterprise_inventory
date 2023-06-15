@@ -43,116 +43,112 @@
             <h6>Update your product</h6>
           </div>
         </div>
+        <?php
+        include 'config.php';
 
-        <div class="card">
+        // Check if product ID is provided
+        if (isset($_GET['id'])) {
+          $productId = $_GET['id'];
+
+          // Retrieve the product details from the database
+          $sql = "SELECT * FROM inventory WHERE id = ?";
+          $stmt = mysqli_prepare($connection, $sql);
+          mysqli_stmt_bind_param($stmt, "i", $productId);
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+
+          // Check if the product exists
+          if (mysqli_num_rows($result) > 0) {
+            $product = mysqli_fetch_assoc($result);
+          } else {
+            // Redirect back to the product list page if the product doesn't exist
+            header("Location: productlist.php");
+            exit();
+          }
+
+          mysqli_stmt_close($stmt);
+        } else {
+          // Redirect back to the product list page if no product ID is provided
+          header("Location: productlist.php");
+          exit();
+        }
+        ?>
+
+        <form class="card" action="productupdate.php?id=<?php echo $productId; ?>" method="post">
           <div class="card-body">
             <div class="row">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Product Name</label>
-                  <input type="text" value="Macbook pro" />
+                  <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Category</label>
-                  <select class="select">
-                    <option>Computers</option>
-                    <option>Mac</option>
+                  <select class="select" name="category">
+                    <option>Choose Category</option>
+                    <?php
+                    // Retrieve category data from the database
+                    $sql = "SELECT * FROM category";
+                    $result = mysqli_query($connection, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $categoryName = $row["category_name"];
+                        $selected = ($categoryName == $product['category']) ? 'selected' : '';
+                        echo '<option ' . $selected . '>' . $categoryName . '</option>';
+                      }
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Sub Category</label>
-                  <select class="select">
-                    <option>None</option>
-                    <option>option1</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Brand</label>
-                  <select class="select">
-                    <option>None</option>
-                    <option>option1</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Unit</label>
-                  <select class="select">
-                    <option>Piece</option>
-                    <option>Kg</option>
-                  </select>
-                </div>
-              </div>
+
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>SKU</label>
-                  <input type="text" value="PT0002" />
+                  <input type="text" name="sku" value="<?php echo $product['sku']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Minimum Qty</label>
-                  <input type="text" value="5" />
+                  <input type="text" name="minimum_quantity" value="<?php echo $product['minimum_quantity']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Quantity</label>
-                  <input type="text" value="50" />
+                  <label>On Stock</label>
+                  <input type="text" name="on_stock" value="<?php echo $product['on_stock']; ?>" />
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group">
                   <label>Description</label>
-                  <textarea class="form-control">
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</textarea>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Tax</label>
-                  <select class="select">
-                    <option>Choose Tax</option>
-                    <option>2%</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Discount Type</label>
-                  <select class="select">
-                    <option>Percentage</option>
-                    <option>10%</option>
-                    <option>20%</option>
-                  </select>
+                  <textarea class="form-control" name="description"><?php echo $product['description']; ?></textarea>
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Price</label>
-                  <input type="text" value="1500.00" />
+                  <input type="text" name="price" value="<?php echo $product['price']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label> Status</label>
-                  <select class="select">
-                    <option>Active</option>
-                    <option>Open</option>
+                  <label>Status</label>
+                  <select class="select" name="status">
+                    <option <?php echo ($product['status'] == 'Closed') ? 'selected' : ''; ?>>Closed</option>
+                    <option <?php echo ($product['status'] == 'Open') ? 'selected' : ''; ?>>Open</option>
                   </select>
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label> Product Image</label>
+                  <label>Product Image</label>
                   <div class="image-upload">
-                    <input type="file" />
+                    <input type="file" id="imageFile" name="imageFile" accept="image/*" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>
@@ -162,31 +158,17 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
               </div>
               <div class="col-12">
                 <div class="product-list">
-                  <ul class="row">
-                    <li>
-                      <div class="productviews">
-                        <div class="productviewsimg">
-                          <img src="assets/img/icons/macbook.svg" alt="img" />
-                        </div>
-                        <div class="productviewscontent">
-                          <div class="productviewsname">
-                            <h2>macbookpro.jpg</h2>
-                            <h3>581kb</h3>
-                          </div>
-                          <a href="javascript:void(0);" class="hideset">x</a>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                  <ul class="row" id="uploadedImage"></ul>
                 </div>
               </div>
               <div class="col-lg-12">
-                <a href="javascript:void(0);" class="btn btn-submit me-2">Update</a>
-                <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                <button type="submit" class="btn btn-submit me-2">Submit</button>
+                <a href="productlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </div>
           </div>
-        </div>
+        </form>
+
       </div>
     </div>
   </div>
