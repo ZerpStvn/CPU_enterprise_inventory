@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $(".reserve-link").on("click", function () {
+  $(".request-link").on("click", function () {
     // Get the product ID and other necessary data
     var productId = $(this).data("productid");
     var userName = '<?php echo $_SESSION["user_name"]; ?>';
@@ -9,7 +9,7 @@ $(document).ready(function () {
     // Create an AJAX request
     $.ajax({
       type: "POST",
-      url: "reserveAuth.php",
+      url: "requestAuth.php",
       data: {
         productId: productId,
         userName: userName,
@@ -24,7 +24,7 @@ $(document).ready(function () {
       },
       error: function () {
         // Reservation failed
-        alert("Reservation failed. Please try again.");
+        alert("Request failed. Please try again.");
       },
     });
   });

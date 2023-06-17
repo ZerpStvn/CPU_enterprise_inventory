@@ -11,6 +11,9 @@ $description = $_POST['description'];
 $price = $_POST['price'];
 $status = $_POST['status'];
 
+// Add the current date
+$date = date("Y-m-d");
+
 // Handle file upload
 $targetDirectory = 'uploads/'; // Folder to store uploaded images
 $targetFile = $targetDirectory . basename($_FILES['imageFile']['name']);
@@ -30,9 +33,9 @@ if (!move_uploaded_file($_FILES['imageFile']['tmp_name'], $targetFile)) {
 }
 
 // Prepare and execute the SQL query
-$sql = "INSERT INTO inventory (product_name, category, sku, minimum_quantity, on_stock, description, image, price, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO inventory (product_name, category, sku, minimum_quantity, on_stock, description, image, price, status, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = mysqli_prepare($connection, $sql);
-mysqli_stmt_bind_param($stmt, "sssiissss", $productName, $category, $sku, $minimumQuantity, $onStock, $description, $targetFile, $price, $status);
+mysqli_stmt_bind_param($stmt, "sssiisssss", $productName, $category, $sku, $minimumQuantity, $onStock, $description, $targetFile, $price, $status, $date);
 $result = mysqli_stmt_execute($stmt);
 
 if ($result) {

@@ -24,8 +24,13 @@
                                 Reservation</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="quotationList.php">Reservation List</a></li>
+                            <li><a href="reservationAdmin.php">Reservation List</a></li>
                         </ul>
+                    </li>
+                    <li class="">
+                        <a href="adminRequest.php"><img src="assets/img/icons/eye1.svg" alt="img" /><span>
+                                Request</span>
+                        </a>
                     </li>
                     <li class="">
                         <a href="userlist.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
@@ -58,11 +63,11 @@
                             <span class="menu-arrow"></span></a>
                         <ul>
                             <li><a href="reservationStudent.php">Product</a></li>
-                            <li><a href="reservationStudent.php">Reservation Record</a></li>
+                            <li><a href="reservationStudentRecod.php">Reservation Record</a></li>
                         </ul>
                     </li>
                     <li class="">
-                        <a href="userlist.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
+                        <a href="requestStudent.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
                                 Request</span>
                         </a>
                     </li>

@@ -74,30 +74,10 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown has-arrow flag-nav">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
-                    <img src="assets/img/flags/us1.png" alt="" height="20" />
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/us.png" alt="" height="16" /> English
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/fr.png" alt="" height="16" /> French
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/es.png" alt="" height="16" /> Spanish
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="assets/img/flags/de.png" alt="" height="16" /> German
-                    </a>
-                </div>
-            </li>
-
             <li class="nav-item dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                     <img src="assets/img/icons/notification-bing.svg" alt="img" />
-                    <span class="badge rounded-pill">4</span>
+                    <span class="badge rounded-pill">0</span>
                 </a>
                 <div class="dropdown-menu notifications">
                     <div class="topnav-dropdown-header">
@@ -135,8 +115,8 @@
                             </div>
                         </div>
                         <hr class="m-0" />
-                        <a class="dropdown-item" href="profile.php">
-                            <i class="me-2" data-feather="user"></i> My Profile</a>
+                        <!-- <a class="dropdown-item" href="profile.php">
+                            <i class="me-2" data-feather="user"></i> My Profile</a> -->
                         <a class="dropdown-item" href="#"><i class="me-2" data-feather="settings"></i>Settings</a>
                         <hr class="m-0" />
                         <a class="dropdown-item logout pb-0" href="logout.php"><img src="assets/img/icons/log-out.svg"

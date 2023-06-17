@@ -9,9 +9,9 @@
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Edit</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" /> -->
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
@@ -144,7 +144,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-lg-12">
+              <!-- <div class="col-lg-12">
                 <div class="form-group">
                   <label>Product Image</label>
                   <div class="image-upload">
@@ -160,7 +160,7 @@
                 <div class="product-list">
                   <ul class="row" id="uploadedImage"></ul>
                 </div>
-              </div>
+              </div> -->
               <div class="col-lg-12">
                 <button type="submit" class="btn btn-submit me-2">Submit</button>
                 <a href="productlist.php" class="btn btn-cancel">Cancel</a>

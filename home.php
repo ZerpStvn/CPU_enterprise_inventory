@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
+
 <body>
   <div id="global-loader">
     <div class="whirly-loader"></div>
@@ -43,9 +44,9 @@
               </div>
               <div class="dash-widgetcontent">
                 <h5>
-                  $<span class="counters" data-count="307144.00">$307,144.00</span>
+                  <span class="counters" data-count="15">15</span>
                 </h5>
-                <h6>Total Purchase Due</h6>
+                <h6>Daily Reservations</h6>
               </div>
             </div>
           </div>
@@ -56,9 +57,29 @@
               </div>
               <div class="dash-widgetcontent">
                 <h5>
-                  $<span class="counters" data-count="4385.00">$4,385.00</span>
+                  <?php
+                  require_once 'config.php';
+
+                  // Get the total number of rows in the inventory table
+                  $query = "SELECT COUNT(*) AS total FROM inventory";
+                  $result = mysqli_query($connection, $query);
+
+                  if ($result) {
+                    // Fetch the total row count
+                    $row = mysqli_fetch_assoc($result);
+                    $totalCount = $row['total'];
+
+                    // Display the total count in an <h4> tag
+                    ?>
+                    <span class="counters" data-count="<?php echo $totalCount; ?>"></span>
+                    <?php
+                  } else {
+                    echo "Error retrieving inventory count: " . mysqli_error($connection);
+                  }
+                  ?>
+
                 </h5>
-                <h6>Total Sales Due</h6>
+                <h6>Total Inventory</h6>
               </div>
             </div>
           </div>
@@ -69,9 +90,9 @@
               </div>
               <div class="dash-widgetcontent">
                 <h5>
-                  $<span class="counters" data-count="385656.50">385,656.50</span>
+                  <span class="counters" data-count="120"></span>
                 </h5>
-                <h6>Total Sale Amount</h6>
+                <h6>Daily Request</h6>
               </div>
             </div>
           </div>
@@ -82,28 +103,37 @@
               </div>
               <div class="dash-widgetcontent">
                 <h5>
-                  $<span class="counters" data-count="40000.00">400.00</span>
+                  <span class="counters" data-count="540"></span>
                 </h5>
-                <h6>Total Sale Amount</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 col-12 d-flex">
-            <div class="dash-count">
-              <div class="dash-counts">
-                <h4>100</h4>
-                <h5>Customers</h5>
-              </div>
-              <div class="dash-imgs">
-                <i data-feather="user"></i>
+                <h6>Daily Visistors</h6>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das1">
               <div class="dash-counts">
-                <h4>100</h4>
-                <h5>Suppliers</h5>
+                <?php
+                require_once 'config.php';
+
+                // Get the total number of rows in the inventory table
+                $query = "SELECT COUNT(*) AS total FROM reservations";
+                $result = mysqli_query($connection, $query);
+
+                if ($result) {
+                  // Fetch the total row count
+                  $row = mysqli_fetch_assoc($result);
+                  $totalCount = $row['total'];
+
+                  ?>
+                  <h4>
+                    <?php echo $totalCount; ?>
+                  </h4>
+                  <?php
+                } else {
+                  echo "Error retrieving inventory count: " . mysqli_error($connection);
+                }
+                ?>
+                <h5>Reservations</h5>
               </div>
               <div class="dash-imgs">
                 <i data-feather="user-check"></i>
@@ -113,8 +143,29 @@
           <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das2">
               <div class="dash-counts">
-                <h4>100</h4>
-                <h5>Purchase Invoice</h5>
+                <?php
+                require_once 'config.php';
+
+                // Get the total number of rows in the inventory table
+                $query = "SELECT COUNT(*) AS total FROM inventory";
+                $result = mysqli_query($connection, $query);
+
+                if ($result) {
+                  // Fetch the total row count
+                  $row = mysqli_fetch_assoc($result);
+                  $totalCount = $row['total'];
+
+                  // Display the total count in an <h4> tag
+                  ?>
+                  <h4>
+                    <?php echo $totalCount; ?>
+                  </h4>
+                  <?php
+                } else {
+                  echo "Error retrieving inventory count: " . mysqli_error($connection);
+                }
+                ?>
+                <h5>Inventory</h5>
               </div>
               <div class="dash-imgs">
                 <i data-feather="file-text"></i>
@@ -122,47 +173,68 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 d-flex">
-            <div class="dash-count das3">
+            <div class="dash-count">
               <div class="dash-counts">
-                <h4>105</h4>
-                <h5>Sales Invoice</h5>
+                <?php
+                require_once 'config.php';
+
+                // Get the total number of rows in the inventory table
+                $query = "SELECT COUNT(*) AS total FROM users";
+                $result = mysqli_query($connection, $query);
+
+                if ($result) {
+                  // Fetch the total row count
+                  $row = mysqli_fetch_assoc($result);
+                  $totalCount = $row['total'];
+
+                  ?>
+                  <h4>
+                    <?php echo $totalCount; ?>
+                  </h4>
+                  <?php
+                } else {
+                  echo "Error retrieving inventory count: " . mysqli_error($connection);
+                }
+                ?>
+                <h5>Users</h5>
               </div>
               <div class="dash-imgs">
-                <i data-feather="file"></i>
+                <i data-feather="user"></i>
               </div>
             </div>
           </div>
+
         </div>
 
         <div class="row">
           <div class="col-lg-7 col-sm-12 col-12 d-flex">
             <div class="card flex-fill">
               <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Purchase & Sales</h5>
+                <h5 class="card-title mb-0">Daily Logins</h5>
                 <div class="graph-sets">
                   <ul>
                     <li>
-                      <span>Sales</span>
+                      <span>Reservations</span>
                     </li>
                     <li>
-                      <span>Purchase</span>
+                      <span>Request</span>
                     </li>
                   </ul>
                   <div class="dropdown">
                     <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
                       data-bs-toggle="dropdown" aria-expanded="false">
-                      2022
+                      2023
                       <img src="assets/img/icons/dropdown.svg" alt="img" class="ms-2" />
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li>
+                        <a href="javascript:void(0);" class="dropdown-item">2023</a>
+                      </li>
                       <li>
                         <a href="javascript:void(0);" class="dropdown-item">2022</a>
                       </li>
                       <li>
                         <a href="javascript:void(0);" class="dropdown-item">2021</a>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0);" class="dropdown-item">2020</a>
                       </li>
                     </ul>
                   </div>
@@ -176,17 +248,17 @@
           <div class="col-lg-5 col-sm-12 col-12 d-flex">
             <div class="card flex-fill">
               <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                <h4 class="card-title mb-0">Recently Added Products</h4>
+                <h4 class="card-title mb-0">Recently Item Added</h4>
                 <div class="dropdown">
                   <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" class="dropset">
                     <i class="fa fa-ellipsis-v"></i>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li>
-                      <a href="productlist.html" class="dropdown-item">Product List</a>
+                      <a href="productlist.php" class="dropdown-item">Product List</a>
                     </li>
                     <li>
-                      <a href="addproduct.html" class="dropdown-item">Product Add</a>
+                      <a href="addproduct.php" class="dropdown-item">Product Add</a>
                     </li>
                   </ul>
                 </div>
@@ -196,52 +268,58 @@
                   <table class="table datatable">
                     <thead>
                       <tr>
-                        <th>Sno</th>
+                        <th>sno</th>
                         <th>Products</th>
-                        <th>Price</th>
+                        <th>on stock</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td class="productimgname">
-                          <a href="productlist.html" class="product-img">
-                            <img src="assets/img/product/product22.jpg" alt="product" />
-                          </a>
-                          <a href="productlist.html">Apple Earpods</a>
-                        </td>
-                        <td>$891.2</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td class="productimgname">
-                          <a href="productlist.html" class="product-img">
-                            <img src="assets/img/product/product23.jpg" alt="product" />
-                          </a>
-                          <a href="productlist.html">iPhone 11</a>
-                        </td>
-                        <td>$668.51</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td class="productimgname">
-                          <a href="productlist.html" class="product-img">
-                            <img src="assets/img/product/product24.jpg" alt="product" />
-                          </a>
-                          <a href="productlist.html">samsung</a>
-                        </td>
-                        <td>$522.29</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td class="productimgname">
-                          <a href="productlist.html" class="product-img">
-                            <img src="assets/img/product/product6.jpg" alt="product" />
-                          </a>
-                          <a href="productlist.html">Macbook Pro</a>
-                        </td>
-                        <td>$291.01</td>
-                      </tr>
+                      <?php
+                      require_once 'config.php';
+
+                      // Retrieve the three most recent inventory entries added within the last five days
+                      $query = "SELECT * FROM inventory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY) ORDER BY date DESC LIMIT 3";
+                      $result = mysqli_query($connection, $query);
+
+                      if (mysqli_num_rows($result) > 0) {
+                        $counter = 1; // Initialize the counter
+                      
+                        while ($row = mysqli_fetch_assoc($result)) {
+                          $productName = $row['product_name'];
+                          $onStock = $row['on_stock'];
+                          $image = $row['image'];
+
+                          ?>
+                          <tr>
+                            <td>
+                              <?php echo $counter; ?>
+                            </td> <!-- Increment the counter -->
+                            <td class="productimgname">
+                              <a href="productlist.html" class="product-img">
+                                <img src="<?php echo $image; ?>" alt="product" />
+                              </a>
+                              <a href="productlist.php">
+                                <?php echo $productName; ?>
+                              </a>
+                            </td>
+                            <td>
+                              <?php echo $onStock; ?>
+                            </td>
+                          </tr>
+                          <?php
+
+                          $counter++; // Increment the counter for the next row
+                        }
+                      } else {
+                        ?>
+                        <tr>
+                          <td colspan="3">No inventory data found within the specified timeframe</td>
+                        </tr>
+                        <?php
+                      }
+
+                      ?>
+
                     </tbody>
                   </table>
                 </div>
@@ -251,74 +329,73 @@
         </div>
         <div class="card mb-0">
           <div class="card-body">
-            <h4 class="card-title">Expired Products</h4>
+            <h4 class="card-title">Reservations</h4>
             <div class="table-responsive dataview">
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th>SNo</th>
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Brand Name</th>
-                    <th>Category Name</th>
-                    <th>Expiry Date</th>
+                    <th>sno</th>
+                    <th>SKU</th>
+                    <th>Item</th>
+                    <th>Customer name</th>
+                    <th>SchoolID</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><a href="javascript:void(0);">IT0001</a></td>
-                    <td class="productimgname">
-                      <a class="product-img" href="productlist.html">
-                        <img src="assets/img/product/product2.jpg" alt="product" />
-                      </a>
-                      <a href="productlist.html">Orange</a>
-                    </td>
-                    <td>N/D</td>
-                    <td>Fruits</td>
-                    <td>12-12-2022</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><a href="javascript:void(0);">IT0002</a></td>
-                    <td class="productimgname">
-                      <a class="product-img" href="productlist.html">
-                        <img src="assets/img/product/product3.jpg" alt="product" />
-                      </a>
-                      <a href="productlist.html">Pineapple</a>
-                    </td>
-                    <td>N/D</td>
-                    <td>Fruits</td>
-                    <td>25-11-2022</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><a href="javascript:void(0);">IT0003</a></td>
-                    <td class="productimgname">
-                      <a class="product-img" href="productlist.html">
-                        <img src="assets/img/product/product4.jpg" alt="product" />
-                      </a>
-                      <a href="productlist.html">Stawberry</a>
-                    </td>
-                    <td>N/D</td>
-                    <td>Fruits</td>
-                    <td>19-11-2022</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><a href="javascript:void(0);">IT0004</a></td>
-                    <td class="productimgname">
-                      <a class="product-img" href="productlist.html">
-                        <img src="assets/img/product/product5.jpg" alt="product" />
-                      </a>
-                      <a href="productlist.html">Avocat</a>
-                    </td>
-                    <td>N/D</td>
-                    <td>Fruits</td>
-                    <td>20-11-2022</td>
-                  </tr>
+                  <?php
+                  require_once 'config.php';
+
+                  $query = "SELECT * FROM reservations";
+                  $result = mysqli_query($connection, $query);
+
+                  if (mysqli_num_rows($result) > 0) {
+                    $rowCount = 1; // Initialize row count
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $sku = $row['sku'];
+                      $productImage = $row['image'];
+                      $productName = $row['product_name'];
+                      $userName = $row['userName'];
+                      $schoolID = $row['schoolID'];
+                      $date = $row['date'];
+                      ?>
+                      <tr>
+                        <td>
+                          <?php echo $rowCount; ?>
+                        </td>
+                        <td><a href="javascript:void(0);">
+                            <?php echo $sku; ?>
+                          </a></td>
+                        <td class="productimgname">
+                          <a class="product-img" href="reservationAdmin.php">
+                            <img src="<?php echo $productImage; ?>" alt="product" />
+                          </a>
+                          <a href="reservationAdmin.php">
+                            <?php echo $productName; ?>
+                          </a>
+                        </td>
+                        <td>
+                          <?php echo $userName; ?>
+                        </td>
+                        <td>
+                          <?php echo $schoolID; ?>
+                        </td>
+                        <td>
+                          <?php echo $date; ?>
+                        </td>
+                      </tr>
+                      <?php
+                      $rowCount++; // Increment row count
+                    }
+                  } else {
+                    echo "<tr><td colspan='6'>No reservation data found</td></tr>";
+                  }
+
+                  mysqli_close($connection);
+                  ?>
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>

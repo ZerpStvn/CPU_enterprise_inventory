@@ -46,11 +46,6 @@
                         <h4>Product</h4>
                         <h6>Reserve your item</h6>
                     </div>
-                    <div class="page-btn">
-                        <a href="addquotation.html" class="btn btn-added">
-                            <img src="assets/img/icons/plus.svg" alt="img" class="me-2"> Add Quotation
-                        </a>
-                    </div>
                 </div>
 
                 <div class="card">
@@ -68,22 +63,6 @@
                                             alt="img"></a>
                                 </div>
                             </div>
-                            <div class="wordset">
-                                <ul>
-                                    <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
-                                                src="assets/img/icons/pdf.svg" alt="img"></a>
-                                    </li>
-                                    <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                                                src="assets/img/icons/excel.svg" alt="img"></a>
-                                    </li>
-                                    <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                                                src="assets/img/icons/printer.svg" alt="img"></a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
 
                         <div class="card" id="filter_inputs">
@@ -100,15 +79,15 @@
                                             <input type="text" placeholder="Enter Reference ">
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-sm-6 col-12">
+                                    <!-- <div class="col-lg-2 col-sm-6 col-12">
                                         <div class="form-group">
                                             <select class="select">
                                                 <option>Choose Customer</option>
                                                 <option>Customer1</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-2 col-sm-6 col-12">
+                                    </div> -->
+                                    <!-- <div class="col-lg-2 col-sm-6 col-12">
                                         <div class="form-group">
                                             <select class="select">
                                                 <option>Choose Status</option>
@@ -116,7 +95,7 @@
                                                 <option>Complete</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-1 col-sm-6 col-12 ms-auto">
                                         <div class="form-group">
                                             <a class="btn btn-filters ms-auto"><img
@@ -160,10 +139,13 @@
                                             $description = $row['description'];
                                             $onStock = $row['on_stock'];
                                             $image = $row['image'];
-
                                             // Check if the current user has reserved this product
                                             $reservationQuery = "SELECT * FROM reservations WHERE productid = '$productId' AND userID = '$userID'";
                                             $reservationResult = mysqli_query($connection, $reservationQuery);
+
+                                            // Check if the current user has sent a request for this product
+                                            $requestQuery = "SELECT * FROM requests WHERE productid = '$productId' AND userID = '$userID'";
+                                            $requestResult = mysqli_query($connection, $requestQuery);
 
                                             if (mysqli_num_rows($reservationResult) > 0) {
                                                 // User has already reserved this product
@@ -196,7 +178,8 @@
                                                             <span class="badges bg-lightred">Out of Stock</span>
                                                         <?php } ?>
                                                     </td>
-                                                    <td><span class="badges bg-lightyellow">Reserved</span></td>
+                                                    <td><a style="color:white" href="reservationStudentRecod.php"
+                                                            class="badges bg-lightyellow">Reserved</a></td>
                                                 </tr>
                                                 <?php
                                             } else {
@@ -235,7 +218,8 @@
                                                             <a style="color:white" class="badges bg-lightyellow reserve-link"
                                                                 data-productid="<?php echo $productId; ?>">Reserve</a>
                                                         <?php } else { ?>
-                                                            <span class="badges bg-lightgreen">Send Request</span>
+                                                            <a style="color:white" class="badges bg-lightgreen request-link"
+                                                                data-productid="<?php echo $productId; ?>">Send request</a>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>
@@ -281,6 +265,7 @@
 
     <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+    <script src="assets/js/request.js"></script>
     <script src="assets/js/reserve.js"></script>
     <script src="assets/js/script.js"></script>
 </body>

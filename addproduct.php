@@ -132,7 +132,7 @@
               </div>
               <div class="col-lg-12">
                 <button type="submit" class="btn btn-submit me-2">Submit</button>
-                <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                <a href="productlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </div>
           </div>

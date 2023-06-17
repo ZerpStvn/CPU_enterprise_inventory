@@ -23,15 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_begin_transaction($connection);
 
     try {
-        // Subtract the on_stock value by 1 in the inventory table
-        $updateQuery = "UPDATE inventory SET on_stock = on_stock - 1 WHERE id = ?";
-        $stmt = $connection->prepare($updateQuery);
-        $stmt->bind_param('i', $productId);
-        $stmt->execute();
-        $stmt->close();
 
-        // Insert the reservation data into the reservations table
-        $insertQuery = "INSERT INTO reservations (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
+        $insertQuery = "INSERT INTO request (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
         SELECT id, CURRENT_DATE(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
         FROM inventory
         WHERE id = ?";
@@ -40,22 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
 
-        // Check if the reservation was successfully inserted
         if ($stmt->affected_rows > 0) {
-            // Commit the transaction if everything is successful
             mysqli_commit($connection);
-            echo "Reservation successful";
+            echo "Request successful";
         } else {
             // Rollback the transaction if the reservation failed
             mysqli_rollback($connection);
-            echo "Reservation failed";
+            echo "Request failed";
         }
 
         $stmt->close();
     } catch (Exception $e) {
         // Rollback the transaction on exception
         mysqli_rollback($connection);
-        echo "Reservation failed";
+        echo "Request failed";
     }
 }
 ?>

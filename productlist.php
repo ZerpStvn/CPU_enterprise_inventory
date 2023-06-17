@@ -43,7 +43,7 @@
             <h6>Manage your products</h6>
           </div>
           <div class="page-btn">
-            <a href="addproduct.html" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img"
+            <a href="addproduct.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img"
                 class="me-1" />Add New Product</a>
           </div>
         </div>
@@ -152,12 +152,6 @@
               <table class="table datanew">
                 <thead>
                   <tr>
-                    <th>
-                      <label class="checkboxs">
-                        <input type="checkbox" id="select-all" />
-                        <span class="checkmarks"></span>
-                      </label>
-                    </th>
                     <th>Product Name</th>
                     <th>SKU</th>
                     <th>Category</th>
@@ -183,12 +177,6 @@
                       ?>
 
                       <tr>
-                        <td>
-                          <label class="checkboxs">
-                            <input type="checkbox" />
-                            <span class="checkmarks"></span>
-                          </label>
-                        </td>
                         <td class="productimgname">
                           <a href="javascript:void(0);" class="product-img">
                             <img src="<?php echo $image; ?>" alt="product" />
