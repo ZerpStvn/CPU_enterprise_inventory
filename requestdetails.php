@@ -9,8 +9,7 @@
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Product | Details</title>
-
+    <title>Student | Request</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -40,37 +39,36 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Product Details</h4>
-                        <h6>Full details of a product</h6>
+                        <h4>Student Request</h4>
                     </div>
                 </div>
                 <?php
                 include 'config.php';
 
                 // Check if product ID is provided
-                if (isset($_GET['id'])) {
-                    $productId = $_GET['id'];
+                if (isset($_GET['reqid'])) {
+                    $reservedID = $_GET['reqid'];
 
                     // Retrieve the product details from the database
-                    $sql = "SELECT * FROM inventory WHERE id = ?";
+                    $sql = "SELECT * FROM request WHERE id = ?";
                     $stmt = mysqli_prepare($connection, $sql);
-                    mysqli_stmt_bind_param($stmt, "i", $productId);
+                    mysqli_stmt_bind_param($stmt, "i", $reservedID);
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
 
                     // Check if the product exists
                     if (mysqli_num_rows($result) > 0) {
-                        $product = mysqli_fetch_assoc($result);
+                        $requested = mysqli_fetch_assoc($result);
                     } else {
                         // Redirect back to the product list page if the product doesn't exist
-                        header("Location: productlist.php");
+                        header("Location: adminRequest.php");
                         exit();
                     }
 
                     mysqli_stmt_close($stmt);
                 } else {
                     // Redirect back to the product list page if no product ID is provided
-                    header("Location: productlist.php");
+                    header("Location: adminRequest.php");
                     exit();
                 }
                 ?>
@@ -79,68 +77,48 @@
                     <div class="col-lg-8 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="bar-code-view">
-                                    <img src="assets/img/barcode1.png" alt="barcode">
-                                    <a class="printimg">
-                                        <img src="assets/img/icons/printer.svg" alt="print">
-                                    </a>
-                                </div>
+
                                 <div class="productdetails">
                                     <ul class="product-bar">
                                         <li>
-                                            <h4>
-                                                Product name
-                                            </h4>
+                                            <h4>Student ID</h4>
                                             <h6>
-                                                <?php echo $product['product_name']; ?>
+                                                <?php echo $requested['schoolID']; ?>
                                             </h6>
                                         </li>
                                         <li>
-                                            <h4>Category</h4>
+                                            <h4>Student name</h4>
                                             <h6>
-                                                <?php echo $product['category']; ?>
+                                                <?php echo $requested['name']; ?>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h4>Date requested</h4>
+                                            <h6>
+                                                <?php echo date("F d, Y", strtotime($requested['date'])); ?>
+
                                             </h6>
                                         </li>
                                         <li>
                                             <h4>SKU</h4>
                                             <h6>
-                                                <?php echo $product['sku']; ?>
+                                                <?php echo $requested['sku']; ?>
+
                                             </h6>
                                         </li>
                                         <li>
-                                            <h4>on stock</h4>
+                                            <h4>Product name</h4>
                                             <h6>
-                                                <?php echo $product['on_stock']; ?>
-                                            </h6>
-                                        </li>
-                                        <li>
-                                            <h4>Quantity</h4>
-                                            <h6>
-                                                <?php echo $product['minimum_quantity']; ?>
-                                            </h6>
-                                        </li>
-                                        <li>
-                                            <h4>Price</h4>
-                                            <h6>
-                                                <?php echo $product['price']; ?>
-                                            </h6>
-                                        </li>
-                                        <li>
-                                            <h4>Status</h4>
-                                            <h6>
-                                                <?php echo $product['status']; ?>
-                                            </h6>
-                                        </li>
-                                        <li>
-                                            <h4>Description</h4>
-                                            <h6>
-                                                <?php echo $product['description']; ?>
+                                                <?php echo $requested['product_name']; ?>
+
                                             </h6>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        <div class="rowbtn"><button id="restckbtn">Re stock</button><button id="qtabtn">Send
+                                quota</button></div>
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <div class="card">
@@ -148,9 +126,10 @@
                                 <div class="slider-product-details">
                                     <div class="owl-carousel owl-theme product-slide">
                                         <div class="slider-product">
-                                            <img style="margin:auto;" src="<?php echo $product['image']; ?>" alt="img">
+                                            <img style="margin:auto;" src="<?php echo $requested['image']; ?>"
+                                                alt="img">
                                             <h4>
-                                                <?php echo $product['product_name']; ?>
+                                                <?php echo $requested['product_name']; ?>
                                             </h4>
                                         </div>
                                     </div>
@@ -160,8 +139,11 @@
                     </div>
                 </div>
 
+
             </div>
+
         </div>
+    </div>
     </div>
 
 

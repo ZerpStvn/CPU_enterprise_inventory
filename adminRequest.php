@@ -157,19 +157,22 @@
                                                 <?php echo $date; ?>
                                             </td>
                                             <td>
-                                                <span class="badges bg-lightgreen">Requested</span>
-
+                                                <a style="color: white;"
+                                                    href="requestdetails.php?reqid=<?php echo $reservationId; ?>"> <span
+                                                        style="cursor:pointer" class="badges bg-lightred">
+                                                        View Request
+                                                    </span></a>
                                             </td>
                                         </tr>
                                         <?php
                                     }
                                 } else {
                                     ?>
-                                    <tr>
-                                        <td colspan=" 6">No reservation data found
-                                        </td>
-                                    </tr>
-                                    <?php
+                                <tr>
+                                    <td colspan=" 6">No reservation data found
+                                    </td>
+                                </tr>
+                                <?php
                                 }
 
                                 mysqli_close($connection);
