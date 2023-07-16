@@ -278,12 +278,12 @@
                       require_once 'config.php';
 
                       // Retrieve the three most recent inventory entries added within the last five days
-                      $query = "SELECT * FROM inventory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY) ORDER BY date DESC LIMIT 3";
+                      $query = "SELECT * FROM inventory LIMIT 3";
                       $result = mysqli_query($connection, $query);
 
                       if (mysqli_num_rows($result) > 0) {
-                        $counter = 1; // Initialize the counter
-                      
+                        $counter = 1;
+
                         while ($row = mysqli_fetch_assoc($result)) {
                           $productName = $row['product_name'];
                           $onStock = $row['on_stock'];
@@ -293,7 +293,7 @@
                           <tr>
                             <td>
                               <?php echo $counter; ?>
-                            </td> <!-- Increment the counter -->
+                            </td>
                             <td class="productimgname">
                               <a href="productlist.html" class="product-img">
                                 <img src="<?php echo $image; ?>" alt="product" />
@@ -308,14 +308,14 @@
                           </tr>
                           <?php
 
-                          $counter++; // Increment the counter for the next row
+                          $counter++;
                         }
                       } else {
                         ?>
-                        <tr>
-                          <td colspan="3">No inventory data found within the specified timeframe</td>
-                        </tr>
-                        <?php
+                      <tr>
+                        <td colspan="3">No inventory data found within the specified timeframe</td>
+                      </tr>
+                      <?php
                       }
 
                       ?>
@@ -391,7 +391,6 @@
                     echo "<tr><td colspan='6'>No reservation data found</td></tr>";
                   }
 
-                  mysqli_close($connection);
                   ?>
                 </tbody>
               </table>
