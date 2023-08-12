@@ -49,13 +49,13 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Category Name</label>
+                                    <label>Product per set</label>
                                     <input type="text" name="category_name" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Category Code</label>
+                                    <label>Set Code</label>
                                     <input type="text" name="category_code" required>
                                 </div>
                             </div>

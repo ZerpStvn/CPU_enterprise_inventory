@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Insert the reservation data into the reservations table
         $insertQuery = "INSERT INTO reservations (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
-        SELECT id, CURRENT_DATE(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
+        SELECT id, NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
         FROM inventory
         WHERE id = ?";
         $stmt = $connection->prepare($insertQuery);

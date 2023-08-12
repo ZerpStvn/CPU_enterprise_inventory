@@ -9,7 +9,7 @@
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Edit</title>
+  <title>Restock</title>
 
   <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" /> -->
 
@@ -39,8 +39,8 @@
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Edit</h4>
-            <h6>Update your product</h6>
+            <h4>Re stock</h4>
+            <h6>Update Product Stock</h6>
           </div>
         </div>
         <?php
@@ -80,40 +80,20 @@
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Product Name</label>
-                  <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" />
+                  <input readonly type="text" name="product_name" value="<?php echo $product['product_name']; ?>" />
                 </div>
               </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>Category</label>
-                  <select class="select" name="category">
-                    <option>Choose Category</option>
-                    <?php
-                    // Retrieve category data from the database
-                    $sql = "SELECT * FROM category";
-                    $result = mysqli_query($connection, $sql);
 
-                    if (mysqli_num_rows($result) > 0) {
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $categoryName = $row["category_name"];
-                        $selected = ($categoryName == $product['category']) ? 'selected' : '';
-                        echo '<option ' . $selected . '>' . $categoryName . '</option>';
-                      }
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
 
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>SKU</label>
-                  <input type="text" name="sku" value="<?php echo $product['sku']; ?>" />
+                  <input type="text" readonly name="sku" value="<?php echo $product['sku']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Minimum Qty</label>
+                  <label>Stock level</label>
                   <input type="text" name="minimum_quantity" value="<?php echo $product['minimum_quantity']; ?>" />
                 </div>
               </div>
@@ -126,13 +106,14 @@
               <div class="col-lg-12">
                 <div class="form-group">
                   <label>Description</label>
-                  <textarea class="form-control" name="description"><?php echo $product['description']; ?></textarea>
+                  <textarea class="form-control" readonly
+                    name="description"><?php echo $product['description']; ?></textarea>
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Price</label>
-                  <input type="text" name="price" value="<?php echo $product['price']; ?>" />
+                  <input type="text" name="price" readonly value="<?php echo $product['price']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
@@ -162,7 +143,7 @@
                 </div>
               </div> -->
               <div class="col-lg-12">
-                <button type="submit" class="btn btn-submit me-2">Submit</button>
+                <button type="submit" class="btn btn-submit me-2">Restock</button>
                 <a href="productlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </div>

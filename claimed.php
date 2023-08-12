@@ -50,14 +50,32 @@
                         <div class="table-top">
                             <div class="search-set">
                                 <div class="search-path">
-
+                                    <a class="btn btn-filter" id="filter_search">
+                                        <img src="assets/img/icons/filter.svg" alt="img">
+                                        <span><img src="assets/img/icons/closes.svg" alt="img"></span>
+                                    </a>
                                 </div>
                                 <div class="search-input">
                                     <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg"
                                             alt="img"></a>
                                 </div>
                             </div>
-
+                            <div class="wordset">
+                                <ul>
+                                    <li>
+                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
+                                                src="assets/img/icons/pdf.svg" alt="img"></a>
+                                    </li>
+                                    <li>
+                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
+                                                src="assets/img/icons/excel.svg" alt="img"></a>
+                                    </li>
+                                    <li>
+                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
+                                                src="assets/img/icons/printer.svg" alt="img"></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="card" id="filter_inputs">
@@ -108,7 +126,6 @@
                                     <th>School ID</th>
                                     <th>SKU</th>
                                     <th>Item Name</th>
-                                    <th>Date Reserved</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -134,46 +151,43 @@
                                         $datehrs = new DateTime($date);
                                         $formattedDate = $datehrs->format('F j, Y g:i a');
                                         $status = $row['status'];
-                                        ?>
-                                        <tr>
-                                            <td>
-                                                <?php echo $userName; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $schoolID; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $sku; ?>
-                                            </td>
-                                            <td class="productimgname">
-                                                <a href="javascript:void(0);" class="product-img">
-                                                    <img src="<?php echo $productImage; ?>" alt="product">
-                                                </a>
-                                                <a href="javascript:void(0);">
-                                                    <?php echo $productName; ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <?php echo $formattedDate; ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($hoursDifference >= 42 && $status == 0): ?>
-                                                    <span class="badges bg-lightred">Denied</span>
-                                                <?php elseif ($status == 0): ?>
-                                                    <a href="#" class="accept-link badges bg-lightred" style="color:white"
-                                                        data-reservation-id="<?php echo $reservationId; ?>">Claim</a>
-                                                <?php else: ?>
-                                                    <span class="badges bg-lightgreen">Claimed</span>
-                                                <?php endif; ?>
+                                        if ($status == 1) {
+                                            ?>
 
-                                            </td>
-                                        </tr>
-                                        <?php
+                                            <tr>
+                                                <td>
+                                                    <?php echo $userName; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $schoolID; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $sku; ?>
+                                                </td>
+                                                <td class="productimgname">
+                                                    <a href="javascript:void(0);" class="product-img">
+                                                        <img src="<?php echo $productImage; ?>" alt="product">
+                                                    </a>
+                                                    <a href="javascript:void(0);">
+                                                        <?php echo $productName; ?>
+                                                    </a>
+                                                </td>
+
+                                                <td>
+
+
+                                                    <span class="badges bg-lightgreen">Claimed</span>
+
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+
                                     }
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan=" 6">No reservation data found
+                                        <td colspan=" 6">No Data found
                                         </td>
                                     </tr>
                                     <?php

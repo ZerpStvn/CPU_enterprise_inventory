@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user['role'] == 'admin') {
                 header("Location: home.php");
             } else {
-                header("Location: reservationStudent.php");
+                header("Location: student-productlist.php");
             }
             exit();
         } else {

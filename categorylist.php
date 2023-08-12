@@ -39,12 +39,12 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Product Category list</h4>
-                        <h6>View/Search product Category</h6>
+                        <h4>Product Sets</h4>
+                        <h6>View/Search product sets</h6>
                     </div>
                     <div class="page-btn">
                         <a href="addcategory.php" class="btn btn-added">
-                            <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Category
+                            <img src="assets/img/icons/plus.svg" class="me-1" alt="img">Add Product Set
                         </a>
                     </div>
                 </div>

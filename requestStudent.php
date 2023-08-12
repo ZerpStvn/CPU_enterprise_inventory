@@ -110,11 +110,11 @@
                                     }
                                 } else {
                                     ?>
-                                    <tr>
-                                        <td colspan=" 6">No reservation data found
-                                        </td>
-                                    </tr>
-                                    <?php
+                                <tr>
+                                    <td colspan=" 6">No reservation data found
+                                    </td>
+                                </tr>
+                                <?php
                                 }
 
                                 mysqli_close($connection);

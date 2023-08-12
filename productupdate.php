@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $productId = $_GET['id'];
     $productName = $_POST['product_name'];
-    $category = $_POST['category'];
     $sku = $_POST['sku'];
     $minimumQuantity = $_POST['minimum_quantity'];
     $onStock = $_POST['on_stock'];
@@ -32,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // }
 
     // Prepare and execute the SQL query
-    $sql = "UPDATE inventory SET product_name = ?, category = ?, sku = ?, minimum_quantity = ?, on_stock = ?, description = ?, price = ?, status = ? WHERE id = ?";
+    $sql = "UPDATE inventory SET product_name = ?, sku = ?, minimum_quantity = ?, on_stock = ?, description = ?, price = ?, status = ? WHERE id = ?";
     $stmt = mysqli_prepare($connection, $sql);
-    mysqli_stmt_bind_param($stmt, "ssssssssi", $productName, $category, $sku, $minimumQuantity, $onStock, $description, $price, $status, $productId);
+    mysqli_stmt_bind_param($stmt, "sssssssi", $productName, $sku, $minimumQuantity, $onStock, $description, $price, $status, $productId);
     $result = mysqli_stmt_execute($stmt);
 
     if ($result) {

@@ -15,8 +15,8 @@
                         <ul>
                             <li><a href="productlist.php">Product List</a></li>
                             <li><a href="addproduct.php">Add Product</a></li>
-                            <li><a href="categorylist.php">Category List</a></li>
-                            <li><a href="addcategory.php">Add Category</a></li>
+                            <li><a href="categorylist.php">Product Sets</a></li>
+                            <li><a href="addcategory.php">Add Product set</a></li>
                         </ul>
                     </li>
                     <li class="submenu">
@@ -30,6 +30,11 @@
                     <li class="">
                         <a href="adminRequest.php"><img src="assets/img/icons/eye1.svg" alt="img" /><span>
                                 Request</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="claimed.php"><img src="assets/img/icons/product.svg" alt="img" /><span>
+                                Claimed Items</span>
                         </a>
                     </li>
                     <li class="">
