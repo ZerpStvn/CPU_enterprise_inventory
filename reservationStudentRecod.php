@@ -99,7 +99,7 @@
                                         $status = $row['status'];
 
                                         if ($hoursDifference >= 42 && $status == 0) {
-                                            $statusLabel = "<span class='badges bg-lightred'> Denied</span>";
+                                            $statusLabel = "<span class='badges bg-lightred'>Expired</span>";
                                         } elseif ($status == 0) {
                                             $statusLabel = "<span class='badges bg-lightred'>Pending</span>";
                                         } else {
@@ -129,9 +129,13 @@
                                             </td>
                                             <td>
                                                 <?php if ($hoursDifference >= 72 && $status == 0): ?>
-                                                    <span class="badges bg-lightred">Denied</span>
+                                                    <span class="badges bg-lightred">Expired</span>
+                                                    <span class="badges bg-lightyellow"><a style="color:white;"
+                                                            href="cancelres.php?id=<?php echo $reservationId ?>">Delete</a></span>
                                                 <?php elseif ($status == 0): ?>
                                                     <span class="badges bg-lightred">Unclaimed</span>
+                                                    <span class="badges bg-lightyellow"><a style="color:white;"
+                                                            href="cancelres.php?id=<?php echo $reservationId ?>">Cancel</a></span>
                                                 <?php else: ?>
                                                     <span class="badges bg-lightgreen">Claimed</span>
                                                 <?php endif; ?>

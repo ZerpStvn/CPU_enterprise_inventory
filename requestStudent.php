@@ -79,7 +79,19 @@
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
                                         $status = $row['status'];
+                                        $productid = $row['productid'];
+
+                                        // Check the inventory for the current product
+                                        $stockQuery = "SELECT on_stock FROM inventory WHERE id = $productid"; // Assuming your inventory table name is 'inventory' and it has a 'stock' column
+                                        $stockResult = mysqli_query($connection, $stockQuery);
+                                        $stockRow = mysqli_fetch_assoc($stockResult);
+                                        $stock = $stockRow['on_stock'];
+
+                                        // Check stock availability
+                                        $badgeLabel = ($stock < 0) ? "Requested" : "Available";
+                                        $badgeColor = ($stock < 0) ? "bg-lightred" : "bg-lightgreen"; // Assuming "bg-red" for Available, change it to your preference
                                         ?>
+
                                         <tr>
                                             <td>
                                                 <?php echo $userName; ?>
@@ -102,23 +114,36 @@
                                                 <?php echo $date; ?>
                                             </td>
                                             <td>
-                                                <span class="badges bg-lightgreen">Requested</span>
-
+                                                <?php if ($badgeLabel === "Available"): ?>
+                                                    <div style="display:flex;align-item:center;justify-content:center;">
+                                                        <a href="student-productlist.php" style="color:white;"
+                                                            class="badges <?php echo $badgeColor; ?>">
+                                                            <?php echo $badgeLabel; ?>
+                                                        </a>
+                                                        <a class="confirm-text" style="margin-left:10px;"
+                                                            href="reqdelete.php?id=<?php echo $reservationId; ?>">
+                                                            <img src="assets/img/icons/delete.svg" alt="img" />
+                                                    </div>
+                                                <?php else: ?>
+                                                    <span class="badges <?php echo $badgeColor; ?>">
+                                                        <?php echo $badgeLabel; ?>
+                                                    </span>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         <?php
                                     }
                                 } else {
                                     ?>
-                                <tr>
-                                    <td colspan=" 6">No reservation data found
-                                    </td>
-                                </tr>
-                                <?php
+                                    <tr>
+                                        <td colspan="6">No reservation data found</td>
+                                    </tr>
+                                    <?php
                                 }
 
                                 mysqli_close($connection);
                                 ?>
+
                             </tbody>
                         </table>
 

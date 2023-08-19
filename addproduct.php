@@ -54,9 +54,9 @@
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Category</label>
+                  <label>By set</label>
                   <select class="select" name="category">
-                    <option>Choose Category</option>
+                    <option>choose set</option>
                     <?php
                     // Retrieve category data from the database
                     include 'config.php';

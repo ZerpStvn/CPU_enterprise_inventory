@@ -95,7 +95,7 @@
                                             </h6>
                                         </li>
                                         <li>
-                                            <h4>Category</h4>
+                                            <h4>Product set</h4>
                                             <h6>
                                                 <?php echo $product['category']; ?>
                                             </h6>

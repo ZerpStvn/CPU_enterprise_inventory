@@ -57,9 +57,9 @@
         left: 5px;
         width: inherit;
         height: inherit;
-        border-radius: 10px;
+        border-radius: 5px;
         color: white;
-        padding: 0 5px 0 5px;
+        padding: 0 10px 0 10px;
     }
 
     .button {
@@ -93,6 +93,13 @@
     ?>
     <main class="page-wrapper">
         <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>Product on stock</h4>
+                    <h6>Reserve your item</h6>
+                </div>
+            </div>
+
             <div class="page-header">
                 <?php
                 require_once 'config.php';
@@ -134,9 +141,7 @@
                                     <div class="contentproduct">
                                         <p>SKU:
                                             <?php echo $sku ?>
-                                        </p>
-                                        <p>
-                                            Product:
+                                            <br />
                                             <?php echo $productName ?>
                                         </p>
                                         <div class=" button button_reserve">
@@ -151,35 +156,36 @@
                         } else {
                             // User has not reserved this product
                             ?>
-                            <div class="cardproduct">
+                            <a href="" style="color:black;">
+                                <div class="cardproduct">
 
-                                <div class="section">
-                                    <div class="stock" style=" background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
-                                        Stocks
-                                        <?php echo $onStock ?>
-                                    </div>
-                                    <img class="imageproduct" src="<?php echo $image; ?>" alt="product">
-                                    <div class="contentproduct">
-                                        <p>SKU:
-                                            <?php echo $sku ?>
-                                        </p>
-                                        <p>
-                                            Product:
-                                            <?php echo $productName ?>
-                                        </p>
-                                        <div class="button">
-                                            <?php if ($onStock > 0) { ?>
-                                                <a style="color:white" class="badges bg-lightgreen reserve-link"
-                                                    data-productid="<?php echo $productId; ?>">Reserve</a>
-                                            <?php } else { ?>
+                                    <div class="section">
+                                        <div class="stock"
+                                            style=" background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
+                                            Stocks
+                                            <?php echo $onStock ?>
+                                        </div>
+                                        <img class="imageproduct" src="<?php echo $image; ?>" alt="product">
+                                        <div class="contentproduct">
+                                            <p style="padding-bottom:20px">SKU:
+                                                <?php echo $sku ?>
+                                                <br />
+                                                <?php echo $productName ?>
+                                            </p>
+                                            <div class="button">
+                                                <?php if ($onStock > 0) { ?>
+                                                    <a style="color:white" class="badges bg-lightgreen reserve-link"
+                                                        data-productid="<?php echo $productId; ?>">Reserve</a>
+                                                <?php } else { ?>
 
-                                                <a style="color:white" class="badges bg-lightred request-link"
-                                                    data-productid="<?php echo $productId; ?>">Send request</a>
-                                            <?php } ?>
+                                                    <a style="color:white" class="badges bg-lightred request-link"
+                                                        data-productid="<?php echo $productId; ?>">Send request</a>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
                             <?php
                         }

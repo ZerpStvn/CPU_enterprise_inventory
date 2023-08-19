@@ -32,7 +32,7 @@
     <div class="header">
         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'student'): ?>
             <div class="header-left active">
-                <a href="reservationStudent.php" class="logo">
+                <a href="student-productlist.php" class="logo">
                     <img src="assets/img/cpulogo.png" alt="" />
                 </a>
                 <a id="toggle_btn" href="javascript:void(0);"> </a>
@@ -103,7 +103,8 @@
                     <div class="profilename">
 
                         <div class="profileset">
-                            <span class="user-img"><img src="assets/img/logo-small.png" alt="" />
+                            <span class="user-img"><a href="profile.php?user_id=<?php echo $user_id; ?>"><img
+                                        src="assets/img/logo-small.png" alt="" /></a>
                                 <span class="status online"></span></span>
                             <div class="profilesets">
                                 <h6 style="font-size:10px;">
@@ -117,7 +118,8 @@
                         <hr class="m-0" />
                         <!-- <a class="dropdown-item" href="profile.php">
                             <i class="me-2" data-feather="user"></i> My Profile</a> -->
-                        <a class="dropdown-item" href="#"><i class="me-2" data-feather="settings"></i>Settings</a>
+                        <a class="dropdown-item" href="profile.php?user_id=<?php echo $user_id; ?>"><i class="me-2"
+                                data-feather="settings"></i>Profile</a>
                         <hr class="m-0" />
                         <a class="dropdown-item logout pb-0" href="logout.php"><img src="assets/img/icons/log-out.svg"
                                 class="me-2" alt="img" />Logout</a>
@@ -130,8 +132,7 @@
             <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="profile.html">My Profile</a>
-                <a class="dropdown-item" href="generalsettings.html">Settings</a>
+                <a class="dropdown-item" href="profile.php">My Profile</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
             </div>
         </div>

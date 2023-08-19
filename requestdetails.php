@@ -87,6 +87,12 @@
                                             </h6>
                                         </li>
                                         <li>
+                                            <h4>Product ID</h4>
+                                            <h6>
+                                                <?php echo $requested['productid']; ?>
+                                            </h6>
+                                        </li>
+                                        <li>
                                             <h4>Student name</h4>
                                             <h6>
                                                 <?php echo $requested['name']; ?>
@@ -117,8 +123,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="rowbtn"><button id="restckbtn">Re stock</button><button id="qtabtn">Send
-                                quota</button></div>
+                        <div class="rowbtn"><a href="restock.php?id=<?php echo $requested['productid']; ?>"
+                                id="restckbtn" class="btn btn-submit me-2">Re stock</a></div>
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <div class="card">

@@ -67,7 +67,7 @@
                                 Reservation</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="reservationStudent.php">Product</a></li>
+                            <li><a href="student-productlist.php">Product</a></li>
                             <li><a href="reservationStudentRecod.php">Reservation Record</a></li>
                         </ul>
                     </li>
@@ -76,7 +76,7 @@
                                 Request</span>
                         </a>
                     </li>
-                    <li class="submenu">
+                    <!-- <li class="submenu">
                         <a href="javascript:void(0);"><img src="assets/img/icons/settings.svg" alt="img" /><span>
                                 Settings</span>
                             <span class="menu-arrow"></span></a>
@@ -84,7 +84,7 @@
                             <li><a href="#">General Settings</a></li>
                             <li><a href="#">Email Settings</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
             </ul>
         </div>

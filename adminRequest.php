@@ -127,6 +127,7 @@
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         $reservationId = $row['id'];
+                                        $prodID = $row['productid'];
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
                                         $sku = $row['sku'];
@@ -158,8 +159,8 @@
                                             </td>
                                             <td>
                                                 <a style="color: white;"
-                                                    href="requestdetails.php?reqid=<?php echo $reservationId; ?>"> <span
-                                                        style="cursor:pointer" class="badges bg-lightred">
+                                                    href="requestdetails.php?reqid=<?php echo $reservationId; ?>prodid=<?php echo $prodID; ?>">
+                                                    <span style="cursor:pointer" class="badges bg-lightred">
                                                         View Request
                                                     </span></a>
                                             </td>
@@ -168,11 +169,11 @@
                                     }
                                 } else {
                                     ?>
-                                <tr>
-                                    <td colspan=" 6">No reservation data found
-                                    </td>
-                                </tr>
-                                <?php
+                                    <tr>
+                                        <td colspan=" 6">No reservation data found
+                                        </td>
+                                    </tr>
+                                    <?php
                                 }
 
                                 mysqli_close($connection);
