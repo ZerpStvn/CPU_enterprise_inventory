@@ -89,7 +89,7 @@
     <?php include 'header.php'; ?>
     <?php include 'sidebar.php'; ?>
     <?php
-    session_start();
+  
     ?>
     <main class="page-wrapper">
         <div class="content">
