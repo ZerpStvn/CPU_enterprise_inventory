@@ -51,7 +51,7 @@
                             <li><a href="userlists.php">Users List</a></li>
                         </ul>
                     </li>
-                    <li class="submenu">
+                    <!-- <li class="submenu">
                         <a href="javascript:void(0);"><img src="assets/img/icons/settings.svg" alt="img" /><span>
                                 Settings</span>
                             <span class="menu-arrow"></span></a>
@@ -59,7 +59,7 @@
                             <li><a href="#">General Settings</a></li>
                             <li><a href="#">Email Settings</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
                 <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'student'): ?>
                     <li class="submenu">
@@ -74,6 +74,11 @@
                     <li class="">
                         <a href="requestStudent.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
                                 Request</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="cliamed_student.php"><img src="assets/img/icons/product.svg" alt="img" /><span>
+                                Claimed Reservation</span>
                         </a>
                     </li>
                     <!-- <li class="submenu">
