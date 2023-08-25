@@ -123,7 +123,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="rowbtn"><a href="restock.php?id=<?php echo $requested['productid']; ?>"
+                        <div class="rowbtn"><a
+                                href="restock.php?id=<?php echo $requested['productid']; ?>&userid=<?php echo $requested['userID']; ?>"
                                 id="restckbtn" class="btn btn-submit me-2">Re stock</a></div>
                     </div>
                     <div class="col-lg-4 col-sm-12">

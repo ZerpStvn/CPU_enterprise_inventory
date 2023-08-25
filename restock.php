@@ -49,7 +49,7 @@
                 // Check if product ID is provided
                 if (isset($_GET['id'])) {
                     $productId = $_GET['id'];
-
+                    $useriid = $_GET['userid'];
                     // Retrieve the product details from the database
                     $sql = "SELECT * FROM inventory WHERE id = ?";
                     $stmt = mysqli_prepare($connection, $sql);
@@ -74,7 +74,8 @@
                 }
                 ?>
 
-                <form class="card" action="productupdate.php?id=<?php echo $productId; ?>" method="post">
+                <form class="card" action="restockupdate.php?id=<?php echo $productId ?>&userid=<?php echo $useriid ?>"
+                    method="post">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">

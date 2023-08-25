@@ -158,7 +158,7 @@
                                             </td>
                                             <td>
                                                 <?php if ($hoursDifference >= 42 && $status == 0): ?>
-                                                    <span class="badges bg-lightred">Denied</span>
+                                                    <span class="badges bg-lightred">Expired</span>
                                                 <?php elseif ($status == 0): ?>
                                                     <a href="#" class="accept-link badges bg-lightred" style="color:white"
                                                         data-reservation-id="<?php echo $reservationId; ?>">Claim</a>

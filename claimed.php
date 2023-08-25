@@ -189,6 +189,9 @@
                                     <tr>
                                         <td colspan=" 6">No Data found
                                         </td>
+
+
+
                                     </tr>
                                     <?php
                                 }

@@ -32,16 +32,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Insert the reservation data into the reservations table
         $insertQuery = "INSERT INTO reservations (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
-        SELECT id, NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
+        SELECT id,NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
         FROM inventory
         WHERE id = ?";
         $stmt = $connection->prepare($insertQuery);
         $stmt->bind_param('siissi', $userName, $status, $userID, $userName, $schoolID, $productId);
         $stmt->execute();
 
-
         // Check if the reservation was successfully inserted
         if ($stmt->affected_rows > 0) {
+            // Insert data into the notification table
+            $notificationQuery = "INSERT INTO notification (user_id, productid, status,datetime) VALUES (?, ?, 'reserve',NOW())";
+            $stmt2 = $connection->prepare($notificationQuery);
+            $stmt2->bind_param('ii', $userID, $productId);
+            $stmt2->execute();
+            $stmt2->close();
+
             // Commit the transaction if everything is successful
             mysqli_commit($connection);
             echo "Reservation successful";

@@ -89,7 +89,7 @@
     <?php include 'header.php'; ?>
     <?php include 'sidebar.php'; ?>
     <?php
-  
+
     ?>
     <main class="page-wrapper">
         <div class="content">
@@ -119,49 +119,52 @@
                         $description = $row['description'];
                         $onStock = $row['on_stock'];
                         $image = $row['image'];
+
                         // Check if the current user has reserved this product
                         $reservationQuery = "SELECT * FROM reservations WHERE productid = '$productId' AND userID = '$userID'";
                         $reservationResult = mysqli_query($connection, $reservationQuery);
 
                         // Check if the current user has sent a request for this product
-                        $requestQuery = "SELECT * FROM requests WHERE productid = '$productId' AND userID = '$userID'";
+                        $requestQuery = "SELECT * FROM request WHERE productid = '$productId' AND userID = '$userID'";
                         $requestResult = mysqli_query($connection, $requestQuery);
 
                         if (mysqli_num_rows($reservationResult) > 0) {
                             // User has already reserved this product
                             ?>
-                            <div class="cardproduct">
+                            <a style="color:black;" href="product-details.php?id=<?php echo $productId ?>">
+                                <div class="cardproduct">
 
-                                <div class="section">
-                                    <div class="stock" style=" background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
-                                        Stocks
-                                        <?php echo $onStock ?>
-                                    </div>
-                                    <img class="imageproduct" src="<?php echo $image; ?>" alt="product">
-                                    <div class="contentproduct">
-                                        <p>SKU:
-                                            <?php echo $sku ?>
-                                            <br />
-                                            <?php echo $productName ?>
-                                        </p>
-                                        <div class=" button button_reserve">
-                                            <a style="color:white" href="reservationStudentRecod.php"
-                                                class="badges bg-lightyellow">Reserved</a>
+                                    <div class="section">
+                                        <div class="stock"
+                                            style="background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
+                                            Stocks
+                                            <?php echo $onStock ?>
+                                        </div>
+                                        <img class="imageproduct" src="<?php echo $image; ?>" alt="product">
+                                        <div class="contentproduct">
+                                            <p>SKU:
+                                                <?php echo $sku ?>
+                                                <br />
+                                                <?php echo $productName ?>
+                                            </p>
+                                            <div class="button button_reserve">
+                                                <a style="color:white; margin-top: 20px;" href="reservationStudentRecod.php"
+                                                    class="badges bg-lightyellow">Reserved</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
                             <?php
                         } else {
                             // User has not reserved this product
                             ?>
-                            <a href="" style="color:black;">
+                            <a href="product-details.php?id=<?php echo $productId ?>" style="color:black;">
                                 <div class="cardproduct">
-
                                     <div class="section">
                                         <div class="stock"
-                                            style=" background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
+                                            style="background-color: <?php echo ($onStock == 0) ? 'red' : 'green'; ?>;">
                                             Stocks
                                             <?php echo $onStock ?>
                                         </div>
@@ -177,16 +180,19 @@
                                                     <a style="color:white" class="badges bg-lightgreen reserve-link"
                                                         data-productid="<?php echo $productId; ?>">Reserve</a>
                                                 <?php } else { ?>
-
-                                                    <a style="color:white" class="badges bg-lightred request-link"
-                                                        data-productid="<?php echo $productId; ?>">Send request</a>
+                                                    <?php if (mysqli_num_rows($requestResult) > 0) { ?>
+                                                        <a style="color:white" class="badges bg-lightyellow" href="requestStudent.php">View
+                                                            Request</a>
+                                                    <?php } else { ?>
+                                                        <a style="color:white" class="badges bg-lightred request-link"
+                                                            data-productid="<?php echo $productId; ?>">Send Request</a>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </a>
-
                             <?php
                         }
                     }

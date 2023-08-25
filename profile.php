@@ -83,64 +83,67 @@
                                     <div class="profile-contentimg">
                                         <img src="assets/img/avart.jpg" alt="img" id="blah">
                                         <div class="profileupload">
-                                            <input type="file" id="imgInp">
+                                            <!-- <input type="file" id="imgInp">
                                             <a href="javascript:void(0);"><img src="assets/img/icons/edit-set.svg"
-                                                    alt="img"></a>
+                                                    alt="img"></a> -->
                                         </div>
                                     </div>
                                     <div class="profile-contentname">
-                                        <h2><?php echo $userdata['name']?></h2>
+                                        <h2>
+                                            <?php echo $userdata['name'] ?>
+                                        </h2>
                                         <h4>Updates Your Photo and Personal Details.</h4>
                                     </div>
                                 </div>
-                             
+
                             </div>
                         </div>
-                        <div class="row">
+                        <form action="updateprofile.php" method="post" class="row">
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" value="<?php echo $userdata['name']?>">
+                                    <input type="text" value="<?php echo $userdata['name'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Role</label>
-                                    <input type="text" value="<?php echo $userdata['role']?>">
+                                    <input type="text" value="<?php echo $userdata['role'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" value="<?php echo $userdata['email']?>">
+                                    <input type="text" value="<?php echo $userdata['email'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input type="text" value="<?php echo $userdata['mobile_number']?>">
+                                    <input type="text" value="<?php echo $userdata['mobile_number'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <input type="text" value="<?php echo $userdata['status']?>">
+                                    <input type="text" value="<?php echo $userdata['status'] ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Password</label>
                                     <div class="pass-group">
-                                        <input type="password" class=" pass-input" value="<?php echo $userdata['password']?>">
+                                        <input type="password" class=" pass-input"
+                                            value="<?php echo $userdata['password'] ?>">
                                         <span class="fas toggle-password fa-eye-slash"></span>
                                     </div>
                                 </div>
                             </div>
                             <!-- <div class="col-12">
-                                <a href="javascript:void(0);" class="btn btn-submit me-2">Update</a>
+                                <input type="submit" class="btn btn-submit me-2">Update</input>
                                 <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
                             </div> -->
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -166,7 +169,6 @@
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/update_profile.js"></script>
 </body>
 
 </html>

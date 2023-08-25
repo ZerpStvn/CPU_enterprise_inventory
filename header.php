@@ -56,6 +56,7 @@
             </span>
         </a>
 
+
         <ul class="nav user-menu">
             <li class="nav-item">
                 <div class="top-nav-search">
@@ -69,34 +70,255 @@
                                 <span><img src="assets/img/icons/closes.svg" alt="img" /></span>
                             </div>
                         </div>
-                        <a class="btn" id="searchdiv"><img src="assets/img/icons/search.svg" alt="img" /></a>
                     </form>
                 </div>
             </li>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                <li class="nav-item dropdown">
+                    <?php
+                    include 'config.php';
+                    // Query to fetch notifications from the notification table
+                    $query = "SELECT * FROM notification";
+                    $result = mysqli_query($connection, $query);
 
-            <li class="nav-item dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                    <img src="assets/img/icons/notification-bing.svg" alt="img" />
-                    <span class="badge rounded-pill">0</span>
-                </a>
-                <div class="dropdown-menu notifications">
-                    <div class="topnav-dropdown-header">
-                        <span class="notification-title">Notifications</span>
-                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    $count_query = "SELECT COUNT(*) as notification_count FROM notification WHERE status = request";
+
+                    $notification_count = mysqli_query($connection, $count_query);
+                    ;
+
+                    // Check if there are notifications
+                    if (mysqli_num_rows($result) > 0) {
+                        ?>
+                        <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                            <img src="assets/img/icons/notification-bing.svg" alt="img" />
+                            <span class="badge rounded-pill">
+                                <?php echo $notification_count; ?>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu notifications">
+                            <div class="topnav-dropdown-header">
+                                <span class="notification-title">Notifications</span>
+                                <!-- <a href="javascript:void(0)" class="clear-noti"> Clear All </a> -->
+                            </div>
+                            <div class="noti-content">
+                                <ul class="notification-list">
+                                    <div class="noti-content">
+                                        <ul class="notification-list">
+                                            <li class="notification-message">
+                                                <?php
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $notification_id = $row['id'];
+                                                    $status = $row['status'];
+
+                                                    // Fetch user name based on user_id from the users table
+                                                    $user_query = "SELECT name FROM users WHERE id = ?";
+                                                    $user_stmt = mysqli_prepare($connection, $user_query);
+                                                    mysqli_stmt_bind_param($user_stmt, "i", $row['user_id']);
+                                                    mysqli_stmt_execute($user_stmt);
+                                                    $user_result = mysqli_stmt_get_result($user_stmt);
+                                                    $user_data = mysqli_fetch_assoc($user_result);
+                                                    $user_name = $user_data['name'];
+
+                                                    // Fetch product name based on productid from the inventory table
+                                                    $product_query = "SELECT sku FROM inventory WHERE id = ?";
+                                                    $product_stmt = mysqli_prepare($connection, $product_query);
+                                                    mysqli_stmt_bind_param($product_stmt, "i", $row['productid']);
+                                                    mysqli_stmt_execute($product_stmt);
+                                                    $product_result = mysqli_stmt_get_result($product_stmt);
+                                                    $product_data = mysqli_fetch_assoc($product_result);
+                                                    $product_name = $product_data['sku'];
+                                                    ?>
+                                                    <?php if ($status == "request") { ?>
+                                                        <a href="adminRequest.php">
+
+                                                            <div class="media d-flex">
+                                                                <span class="avatar flex-shrink-0">
+                                                                    <img alt="" src="assets/img/avart.jpg">
+                                                                </span>
+                                                                <div class="media-body flex-grow-1">
+
+                                                                    <p class="noti-details"><span class="noti-title">
+                                                                            <?php echo $user_data['name'] ?>
+                                                                        </span>
+
+                                                                        has sent a request <span class="noti-title">for
+                                                                            restocking</span>
+
+                                                                    </p>
+
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <?php
+                                                    }
+                                                    ?>
+                                                    </a>
+                                                <?php } ?>
+                                                <?php if ($status == "reserve") { ?>
+                                                    <a href="reservationAdmin.php">
+
+                                                        <div class="media d-flex">
+                                                            <span class="avatar flex-shrink-0">
+                                                                <img alt="" src="assets/img/avart.jpg">
+                                                            </span>
+                                                            <div class="media-body flex-grow-1">
+
+                                                                <p class="noti-details"><span class="noti-title">
+                                                                        <?php echo $user_data['name'] ?>
+                                                                    </span>
+
+                                                                    has sent a Reservation <span class="noti-title">for
+                                                                        SKU
+                                                                        <?php echo $product_name ?>
+                                                                    </span>
+
+                                                                </p>
+
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <?php
+                                                }
+                                                ?>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <?php
+                    } else {
+                        // No notifications
+                        ?>
+                            <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                                <img src="assets/img/icons/notification-bing.svg" alt="img" />
+                                <span class="badge rounded-pill">0</span>
+                            </a>
+                            <?php
+                    }
+                    ?>
+
+
+
+                        <!-- <div class="topnav-dropdown-footer">
+                            <a href="activities.php">View all Notifications</a>
+                        </div> -->
                     </div>
-                    <div class="noti-content">
-                        <ul class="notification-list">
-                        </ul>
+                </li>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'student'): ?>
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <img src="assets/img/icons/notification-bing.svg" alt="img" />
+                        <span class="badge rounded-pill">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span class="notification-title">Notifications</span>
+                            <!-- <a href="javascript:void(0)" class="clear-noti"> Clear All </a> -->
+                        </div>
+                        <div class="noti-content">
+                            <ul class="notification-list">
+                                <li class="notification-message">
+
+                                    <?php
+                                    include 'config.php';
+
+
+                                    if (isset($_SESSION['user_id'])) {
+                                        $user_id = $_SESSION['user_id'];
+
+                                        $user_query = "SELECT * FROM users WHERE id = ?";
+                                        $user_stmt = mysqli_prepare($connection, $user_query);
+                                        mysqli_stmt_bind_param($user_stmt, "i", $user_id);
+                                        mysqli_stmt_execute($user_stmt);
+                                        $user_result = mysqli_stmt_get_result($user_stmt);
+
+
+                                        $user_data = mysqli_fetch_assoc($user_result);
+
+                                        $count_query = "SELECT COUNT(*) as notification_count FROM notification WHERE user_id = ?";
+                                        $count_stmt = mysqli_prepare($connection, $count_query);
+                                        mysqli_stmt_bind_param($count_stmt, "i", $user_id);
+                                        mysqli_stmt_execute($count_stmt);
+                                        $count_result = mysqli_stmt_get_result($count_stmt);
+                                        $notification_count = mysqli_fetch_assoc($count_result)['notification_count'];
+
+
+                                        mysqli_stmt_close($count_stmt);
+
+                                        $query = "SELECT * FROM notification WHERE user_id = ? ";
+                                        $stmt = mysqli_prepare($connection, $query);
+                                        mysqli_stmt_bind_param($stmt, "i", $user_id);
+                                        mysqli_stmt_execute($stmt);
+                                        $result = mysqli_stmt_get_result($stmt);
+
+                                        // Check if there are notifications for the user
+                                        if (mysqli_num_rows($user_result) > 0) {
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $notification_id = $row['id'];
+                                                $status = $row['status'];
+
+                                                // You can customize the content of each notification here
+                                                $notification_content = "Notification Content"; // Replace with your actual content
+                                                ?>
+                                                <?php if ($status == "restock") { ?>
+
+                                                    <a href="requestStudent.php">
+                                                        <div class="media d-flex">
+                                                            <span class="avatar flex-shrink-0">
+                                                                <img alt="" src="assets/img/avart.jpg">
+                                                            </span>
+                                                            <div class="media-body flex-grow-1">
+                                                                <p class="noti-details"><span class="noti-title">
+                                                                        <?php echo $user_data['name'] ?>
+                                                                    </span>
+
+                                                                    Your item <span class="noti-title">request has been restocked</span>
+
+                                                                </p>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                <?php } ?>
+                                                <?php
+
+                                            }
+
+                                        } else {
+                                            // No notifications for the user
+                                            echo "<p>No notifications found.</p>";
+                                        }
+
+                                        mysqli_stmt_close($stmt);
+                                        mysqli_stmt_close($user_stmt);
+                                    } else {
+
+                                        exit();
+                                    }
+                                    ?>
+
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="topnav-dropdown-footer">
-                        <a href="activities.html">View all Notifications</a>
-                    </div>
-                </div>
-            </li>
+                </li>
+            <?php endif; ?>
+
 
             <li class="nav-item dropdown has-arrow main-drop">
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                    <span class="user-img"><img src="assets/img/logo-small.png" alt="" />
+                    <span class="user-img"><img src="assets/img/avart.jpg" alt="" />
                         <span class="status online"></span></span>
                 </a>
                 <div class="dropdown-menu menu-drop-user">
@@ -104,7 +326,7 @@
 
                         <div class="profileset">
                             <span class="user-img"><a href="profile.php?user_id=<?php echo $user_id; ?>"><img
-                                        src="assets/img/logo-small.png" alt="" /></a>
+                                        src="assets/img/avart.jpg" alt="" /></a>
                                 <span class="status online"></span></span>
                             <div class="profilesets">
                                 <h6 style="font-size:10px;">

@@ -24,18 +24,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
 
-        $insertQuery = "INSERT INTO request (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
-        SELECT id, CURRENT_DATE(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
+        $insertRequestQuery = "INSERT INTO request (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
+        SELECT id, NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
         FROM inventory
         WHERE id = ?";
-        $stmt = $connection->prepare($insertQuery);
+        $stmt = $connection->prepare($insertRequestQuery);
         $stmt->bind_param('siissi', $userName, $status, $userID, $userName, $schoolID, $productId);
         $stmt->execute();
 
-
         if ($stmt->affected_rows > 0) {
-            mysqli_commit($connection);
-            echo "Request successful";
+            // Now insert into the notification table
+            $insertNotificationQuery = "INSERT INTO notification (user_id, productid, status, datetime) VALUES (?, ?, 'request', NOW())";
+            $stmt2 = $connection->prepare($insertNotificationQuery);
+            $stmt2->bind_param('ii', $userID, $productId, );
+            $stmt2->execute();
+
+            if ($stmt2->affected_rows > 0) {
+                mysqli_commit($connection);
+                echo "Request successful";
+            } else {
+                // Rollback the transaction if the reservation or notification failed
+                mysqli_rollback($connection);
+                echo "Request failed";
+            }
+
+            $stmt2->close();
         } else {
             // Rollback the transaction if the reservation failed
             mysqli_rollback($connection);

@@ -114,20 +114,26 @@
                                                 <?php echo $date; ?>
                                             </td>
                                             <td>
-                                                <?php if ($badgeLabel === "Available"): ?>
+                                                <?php if ($stock > 0): ?>
                                                     <div style="display:flex;align-item:center;justify-content:center;">
                                                         <a href="student-productlist.php" style="color:white;"
-                                                            class="badges <?php echo $badgeColor; ?>">
-                                                            <?php echo $badgeLabel; ?>
+                                                            class="badges bg-lightgreen">
+                                                            Available
                                                         </a>
                                                         <a class="confirm-text" style="margin-left:10px;"
                                                             href="reqdelete.php?id=<?php echo $reservationId; ?>">
                                                             <img src="assets/img/icons/delete.svg" alt="img" />
                                                     </div>
                                                 <?php else: ?>
-                                                    <span class="badges <?php echo $badgeColor; ?>">
-                                                        <?php echo $badgeLabel; ?>
-                                                    </span>
+                                                    <div style="display:flex;align-item:center;justify-content:center;">
+                                                        <span class="badges bg-lightred">
+                                                            Requested
+                                                        </span>
+                                                        <a class="confirm-text" style="margin-left:10px;"
+                                                            href="reqdelete.php?id=<?php echo $reservationId; ?>">
+                                                            <img src="assets/img/icons/delete.svg" alt="img" />
+                                                    </div>
+
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
