@@ -15,8 +15,8 @@
                         <ul>
                             <li><a href="productlist.php">Product List</a></li>
                             <li><a href="addproduct.php">Add Product</a></li>
-                            <li><a href="categorylist.php">Product Sets</a></li>
-                            <li><a href="addcategory.php">Add Product set</a></li>
+                            <li><a href="categorylist.php">Category list</a></li>
+                            <li><a href="addcategory.php">Add Category</a></li>
                         </ul>
                     </li>
                     <li class="submenu">
