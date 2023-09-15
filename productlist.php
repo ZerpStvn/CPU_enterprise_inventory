@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/restock.css">
 </head>
 
 <body>
@@ -35,7 +36,14 @@
   <div class="main-wrapper">
     <?php include 'header.php'; ?>
     <?php include 'sidebar.php'; ?>
+
     <div class="page-wrapper">
+      <div class="restock-value">
+        <form action="" id="restockid">
+          <input type="number" placeholder="Re-stock">
+          <button type="submit"> Stock in</button>
+        </form>
+      </div>
       <div class="content">
         <div class="page-header">
           <div class="page-title">
@@ -204,7 +212,7 @@
                           <a class="me-3" href="product-details.php?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/eye.svg" alt="img" />
                           </a>
-                          <a class="me-3" href="editproduct.php?id=<?php echo $productId; ?>">
+                          <a class="me-3" href="?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/edit.svg" alt="img" />
                           </a>
                           <a class="confirm-text" href="productdelete.php?id=<?php echo $productId; ?>">

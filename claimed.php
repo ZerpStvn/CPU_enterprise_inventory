@@ -40,7 +40,7 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Reservation List</h4>
+                        <h4>Claimed</h4>
                     </div>
 
                 </div>
