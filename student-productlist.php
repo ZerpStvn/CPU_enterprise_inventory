@@ -30,12 +30,15 @@
 </head>
 <style>
     .cardproduct {
+
+        width: 100%;
         display: flex;
         padding: 10px;
 
     }
 
     .section {
+        width: 100%;
         border: 1px solid #ccc;
         padding: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,8 +46,11 @@
     }
 
     .imageproduct {
-        width: 150px;
-        height: 150px
+        width: 99%;
+        height: 286px;
+        object-fit: fill;
+        background: wheat;
+
     }
 
     .contentproduct {
@@ -147,6 +153,9 @@
                                                 <?php echo $productName ?>
                                             </p>
                                             <div class="button button_reserve">
+                                                <a style="color:white; margin-top: 20px; margin-right:4px"
+                                                    href="product-details.php?id=<?php echo $productId ?>"
+                                                    class="badges bg-lightgreen">View</a>
                                                 <a style="color:white; margin-top: 20px;" href="reservationStudentRecod.php"
                                                     class="badges bg-lightyellow">Reserved</a>
                                             </div>
@@ -176,13 +185,22 @@
                                             </p>
                                             <div class="button">
                                                 <?php if ($onStock > 0) { ?>
+                                                    <a style="color:white; margin-top: 0px; margin-right:4px"
+                                                        href="product-details.php?id=<?php echo $productId ?>"
+                                                        class="badges bg-lightgreen">View</a>
                                                     <a style="color:white" class="badges bg-lightgreen reserve-link"
                                                         data-productid="<?php echo $productId; ?>">Reserve</a>
                                                 <?php } else { ?>
                                                     <?php if (mysqli_num_rows($requestResult) > 0) { ?>
+                                                        <a style="color:white; margin-top: 0px; margin-right:4px"
+                                                            href="product-details.php?id=<?php echo $productId ?>"
+                                                            class="badges bg-lightgreen">View</a>
                                                         <a style="color:white" class="badges bg-lightyellow" href="requestStudent.php">View
                                                             Request</a>
                                                     <?php } else { ?>
+                                                        <a style="color:white; margin-top: 0px; margin-right:4px"
+                                                            href="product-details.php?id=<?php echo $productId ?>"
+                                                            class="badges bg-lightgreen">View</a>
                                                         <a style="color:white" class="badges bg-lightred request-link"
                                                             data-productid="<?php echo $productId; ?>">Send Request</a>
                                                     <?php } ?>

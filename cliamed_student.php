@@ -124,7 +124,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                            <span class="badges bg-lightgreen">Claimed</span>
+                                                <span class="badges bg-lightgreen">Claimed</span>
                                             </td>
 
                                         </tr>
