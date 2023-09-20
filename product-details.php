@@ -113,7 +113,7 @@
                                             </h6>
                                         </li>
                                         <li>
-                                            <h4>Quantity</h4>
+                                            <h4>Stock level</h4>
                                             <h6>
                                                 <?php echo $product['minimum_quantity']; ?>
                                             </h6>
