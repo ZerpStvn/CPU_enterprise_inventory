@@ -86,12 +86,11 @@
 </style>
 
 <body>
-    <?php include 'header.php'; ?>
-    <?php include 'sidebar.php'; ?>
-    <?php
 
-    ?>
-    <main class="page-wrapper">
+
+    <main class="page-wrapper main-wrapper">
+        <?php include 'header.php'; ?>
+        <?php include 'sidebar.php'; ?>
         <div class="content">
             <div class="page-header">
                 <div class="page-title">

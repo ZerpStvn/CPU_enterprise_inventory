@@ -92,7 +92,7 @@
                                         <h2>
                                             <?php echo $userdata['name'] ?>
                                         </h2>
-                                        <h4>Updates Your Photo and Personal Details.</h4>
+                                        <h4>Personal Details.</h4>
                                     </div>
                                 </div>
 

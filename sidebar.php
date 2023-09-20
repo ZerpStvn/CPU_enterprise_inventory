@@ -92,6 +92,11 @@
                     </li> -->
                 <?php endif; ?>
             </ul>
+            <section class="card-hour-log">
+                <p>CPU enterprise Business Hour</p>
+                <p>M - F ( 8:00 am - 5:00 pm )</p>
+                <p>The CPU enterprise is closed during regular holidays</p>
+            </section>
         </div>
     </div>
 </div>

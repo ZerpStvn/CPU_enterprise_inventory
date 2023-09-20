@@ -354,8 +354,8 @@
             <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="profile.php">My Profile</a>
-                <a class="dropdown-item" href="logout.php">Logout</a>
+                <a class="dropdown-item" href="profile.php?user_id=<?php echo $user_id; ?>">My Profile</a>
+                <a class=" dropdown-item" href="logout.php">Logout</a>
             </div>
         </div>
     </div>
