@@ -38,12 +38,16 @@
     <?php include 'sidebar.php'; ?>
 
     <div class="page-wrapper">
-      <div class="restock-value">
-        <form action="" id="restockid">
-          <input type="number" placeholder="Re-stock">
-          <button type="submit"> Stock in</button>
-        </form>
-      </div>
+      <?php
+      include 'config.php';
+
+      // Fetch inventory data from the database
+      $sql = "SELECT * FROM inventory";
+      $result = mysqli_query($connection, $sql);
+
+      ?>
+
+
       <div class="content">
         <div class="page-header">
           <div class="page-title">
@@ -146,16 +150,6 @@
                 </div>
               </div>
             </div>
-
-            <?php
-            include 'config.php';
-
-            // Fetch inventory data from the database
-            $sql = "SELECT * FROM inventory";
-            $result = mysqli_query($connection, $sql);
-
-            ?>
-
             <div class="table-responsive">
               <table class="table datanew">
                 <thead>
@@ -182,8 +176,25 @@
                       $onStock = $row['on_stock'];
                       $status = $row['status'];
                       $image = $row['image'];
-                      ?>
 
+                      ?>
+                      <div class="restock-value restock-value-<?php echo $productId; ?>">
+                        <div class="inputcontainer">
+                          <form class="cardformstock" action="updatestock.php" method="POST" id="restockid">
+
+                            <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
+                            <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
+                            <label>Stock In</label>
+                            <input type="text" name="on_stock" id="on_stock" placeholder="Stock value" />
+
+                            <div>
+                              <button class="btn btn-submit me-2" id="stock-in-button">Stock in</button>
+                              <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
                       <tr>
                         <td class="productimgname">
                           <a href="javascript:void(0);" class="product-img">
@@ -212,9 +223,10 @@
                           <a class="me-3" href="product-details.php?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/eye.svg" alt="img" />
                           </a>
-                          <a class="me-3" href="?id=<?php echo $productId; ?>">
+                          <a class="me-3 stock-open" data-target=".restock-value-<?php echo $productId; ?>">
                             <img src="assets/img/icons/edit.svg" alt="img" />
                           </a>
+
                           <a class="confirm-text" href="productdelete.php?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/delete.svg" alt="img" />
                           </a>
@@ -257,6 +269,7 @@
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/modalsotck.js"></script>
 </body>
 
 </html>

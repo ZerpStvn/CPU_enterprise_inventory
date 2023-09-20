@@ -1,0 +1,54 @@
+.restock-value {
+  display: none;
+}
+.restock-value.activestock {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(97, 95, 67, 0.164);
+  margin: auto;
+  z-index: 10;
+}
+
+.restock-value.activestock .inputcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10%;
+  margin-left: 20%;
+  background-color: white;
+  max-width: 530px;
+  width: 100%;
+  gap: 20px;
+  padding: 50px 50px;
+  border-radius: 10px;
+  position: relative;
+}
+.restock-value.activestock .inputcontainer > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.restock-value.activestock .inputcontainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.inputcontainer > form > label {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 24px;
+}
+.inputcontainer form > input {
+  height: 48px !important;
+  padding-left: 19px !important;
+  border-radius: 10px !important;
+}
