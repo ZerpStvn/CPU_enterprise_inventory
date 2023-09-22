@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 97%;
   gap: 20px;
 }
 .stock-in-out {
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 97%;
   gap: 20px;
 }
 .restock-value.activestock .inputcontainer {
