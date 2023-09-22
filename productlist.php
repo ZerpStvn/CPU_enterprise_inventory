@@ -180,19 +180,43 @@
                       ?>
                       <div class="restock-value restock-value-<?php echo $productId; ?>">
                         <div class="inputcontainer">
-                          <form class="cardformstock" action="updatestock.php" method="POST" id="restockid">
+                          <h4 class="form-stock-h4" style="text-align:center; font-size:28px">Select Option</h4>
+                          <div style="display:flex;">
+                            <button class="btn btn-submit me-2 stock-in-button" data-product-id="<?php echo $productId; ?>"
+                              data-on-stock="<?php echo $onStock; ?>">Stock in</button>
+                            <button class="btn btn-submit me-2 stock-out-button" data-product-id="<?php echo $productId; ?>"
+                              data-on-stock="<?php echo $onStock; ?>">Stock out</button>
+                          </div>
+                          <div class="stock-in-form" data-product-id="<?php echo $productId; ?>"
+                            data-on-stock="<?php echo $onStock; ?>">
+                            <form class="cardformstock" action="updatestock.php" method="POST" id="restockid">
+                              <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
+                              <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
+                              <label style="font-size:24px">STOCK AVAILABILITY</label>
+                              <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
+                                style="height: 50px; width: 80%; padding-left:10px" />
 
-                            <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
-                            <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
-                            <label>Stock In</label>
-                            <input type="text" name="on_stock" id="on_stock" placeholder="Stock value" />
+                              <div>
+                                <button type="submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
+                                <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="stock-in-out" data-product-id="<?php echo $productId; ?>"
+                            data-on-stock="<?php echo $onStock; ?>">
+                            <form class="cardformstock" action="stockout.php" method="POST" id="restockid">
+                              <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
+                              <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
+                              <label style="font-size:24px">STOCK AVAILABILITY</label>
+                              <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
+                                style="height: 50px; width: 80%; padding-left:10px" />
 
-                            <div>
-                              <button class="btn btn-submit me-2" id="stock-in-button">Stock in</button>
-                              <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
-                            </div>
-                          </form>
-
+                              <div>
+                                <button type="submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
+                                <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
+                              </div>
+                            </form>
+                          </div>
                         </div>
                       </div>
                       <tr>

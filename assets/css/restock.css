@@ -13,14 +13,29 @@
   margin: auto;
   z-index: 10;
 }
-
+.stock-in-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+.stock-in-out {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
 .restock-value.activestock .inputcontainer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 10%;
-  margin-left: 20%;
+  margin-top: 6%;
+  margin-left: 30%;
   background-color: white;
   max-width: 530px;
   width: 100%;

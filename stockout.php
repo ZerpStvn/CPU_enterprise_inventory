@@ -6,13 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $currentStock = $_POST["current_stock"];
     $userInput = $_POST["on_stock"];
 
-    // Check if the input is a valid number
     if (!is_numeric($currentStock) || !is_numeric($userInput)) {
         echo "error: Invalid input.";
         exit;
     }
 
-    $totalValue = $currentStock + $userInput;
+    $totalValue = $currentStock - $userInput;
 
     $sql = "UPDATE inventory SET on_stock = ? WHERE id = ?";
 
