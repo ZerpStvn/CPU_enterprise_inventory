@@ -54,10 +54,10 @@
                         <div class="table-top">
                             <div class="search-set">
                                 <div class="search-path">
-                                    <a class="btn btn-filter" id="filter_search">
+                                    <!-- <a class="btn btn-filter" id="filter_search">
                                         <img src="assets/img/icons/filter.svg" alt="img">
                                         <span><img src="assets/img/icons/closes.svg" alt="img"></span>
-                                    </a>
+                                    </a> -->
                                 </div>
                                 <div class="search-input">
                                     <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg"
@@ -97,7 +97,7 @@
                                         <div class="form-group">
                                             <select class="select">
                                                 <option>Choose Sub Category</option>
-                                                <option>Fruits</option>
+                                                <option>school supplies</option>
                                             </select>
                                         </div>
                                     </div>
@@ -123,12 +123,12 @@
                             <table class="table  datanew">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <!-- <th>
                                             <label class="checkboxs">
                                                 <input type="checkbox" id="select-all">
                                                 <span class="checkmarks"></span>
                                             </label>
-                                        </th>
+                                        </th> -->
                                         <th>Category name</th>
                                         <th>Category Code</th>
                                         <th>Description</th>
@@ -150,12 +150,12 @@
                                             $description = $row["description"];
                                             ?>
                                             <tr>
-                                                <td>
+                                                <!-- <td>
                                                     <label class="checkboxs">
                                                         <input type="checkbox">
                                                         <span class="checkmarks"></span>
                                                     </label>
-                                                </td>
+                                                </td> -->
                                                 <td class="productimgname">
                                                     <a href="javascript:void(0);">
                                                         <?= $categoryName ?>

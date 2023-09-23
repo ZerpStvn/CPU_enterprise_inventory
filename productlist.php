@@ -99,50 +99,18 @@
                     <div class="row">
                       <div class="col-lg col-sm-6 col-12">
                         <div class="form-group">
-                          <select class="select">
-                            <option>Choose Product</option>
-                            <option>Macbook pro</option>
-                            <option>Orange</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Choose Category</option>
-                            <option>Computers</option>
-                            <option>Fruits</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Choose Sub Category</option>
-                            <option>Computer</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Brand</option>
-                            <option>N/D</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Price</option>
-                            <option>150.00</option>
+                          <select class="select" id="productFilter">
+                            <option value="">Choose Product</option>
+                            <option value="University Uniform">University Uniform</option>
+                            <option value="Orange">Orange</option>
                           </select>
                         </div>
                       </div>
                       <div class="col-lg-1 col-sm-6 col-12">
                         <div class="form-group">
-                          <a class="btn btn-filters ms-auto"><img src="assets/img/icons/search-whites.svg"
-                              alt="img" /></a>
+                          <a class="btn btn-filters ms-auto" id="filterButton">
+                            <img src="assets/img/icons/search-whites.svg" alt="img" />
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -207,7 +175,7 @@
                         <td>
                           <?php echo $sku; ?>
                         </td>
-                        <td>
+                        <td class="caegorynameid">
                           <?php echo $category; ?>
                         </td>
                         <td>
@@ -270,6 +238,28 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/modalsotck.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Handle filter button click
+        $("#filterButton").on("click", function () {
+          // Get the selected option value
+          var selectedProduct = $("#productFilter").val().toLowerCase();
+
+          // Iterate through table rows and show/hide based on the selected option
+          $(".datanew tbody tr").each(function () {
+            var row = $(this);
+            var category = row.find("td.categorynameid").text().toLowerCase();
+
+            // If the selected product is empty or matches the row's category, show the row
+            if (selectedProduct === "" || category === selectedProduct) {
+              row.show();
+            } else {
+              row.hide();
+            }
+          });
+        });
+      });
+    </script>
 </body>
 
 </html>
