@@ -64,35 +64,15 @@
           <div class="card-body">
             <div class="table-top">
               <div class="search-set">
-                <div class="search-path">
-                  <a class="btn btn-filter" id="filter_search">
-                    <img src="assets/img/icons/filter.svg" alt="img" />
-                    <span><img src="assets/img/icons/closes.svg" alt="img" /></span>
-                  </a>
-                </div>
+
                 <div class="search-input">
                   <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img" /></a>
                 </div>
               </div>
-              <div class="wordset">
-                <ul>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="assets/img/icons/pdf.svg"
-                        alt="img" /></a>
-                  </li>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                        src="assets/img/icons/excel.svg" alt="img" /></a>
-                  </li>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                        src="assets/img/icons/printer.svg" alt="img" /></a>
-                  </li>
-                </ul>
-              </div>
+
             </div>
 
-            <div class="card mb-0" id="filter_inputs">
+            <div class="card mb-0">
               <div class="card-body pb-0">
                 <div class="row">
                   <div class="col-lg-12 col-sm-12">
@@ -100,18 +80,25 @@
                       <div class="col-lg col-sm-6 col-12">
                         <div class="form-group">
                           <select class="select" id="productFilter">
-                            <option value="">Choose Product</option>
-                            <option value="University Uniform">University Uniform</option>
-                            <option value="Orange">Orange</option>
+                            <option value="">Select Category</option>
+                            <?php
+                            $query = "SELECT DISTINCT category FROM inventory";
+                            $resultview = mysqli_query($connection, $query);
+
+                            if ($resultview) {
+                              while ($row = mysqli_fetch_assoc($resultview)) {
+                                $product = $row['category'];
+                                echo '<option value="' . $product . '">' . $product . '</option>';
+                              }
+
+                              mysqli_free_result($resultview);
+                            }
+                            ?>
                           </select>
                         </div>
                       </div>
                       <div class="col-lg-1 col-sm-6 col-12">
-                        <div class="form-group">
-                          <a class="btn btn-filters ms-auto" id="filterButton">
-                            <img src="assets/img/icons/search-whites.svg" alt="img" />
-                          </a>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -199,7 +186,7 @@
                         <td>
                           <?php echo $sku; ?>
                         </td>
-                        <td class="caegorynameid">
+                        <td class="categorynameid">
                           <?php echo $category; ?>
                         </td>
                         <td>
@@ -264,25 +251,23 @@
     <script src="assets/js/modalsotck.js"></script>
     <script>
       $(document).ready(function () {
-        // Handle filter button click
-        $("#filterButton").on("click", function () {
-          // Get the selected option value
-          var selectedProduct = $("#productFilter").val().toLowerCase();
+        $('#productFilter').on('change', function () {
+          var selectedProduct = $(this).val().trim();  // Get the selected option's value
 
-          // Iterate through table rows and show/hide based on the selected option
-          $(".datanew tbody tr").each(function () {
-            var row = $(this);
-            var category = row.find("td.categorynameid").text().toLowerCase();
+          $('.table.datanew tbody tr').each(function () {
+            var category = $(this).find('.categorynameid').text().trim(); // Get the category from the current row
 
-            // If the selected product is empty or matches the row's category, show the row
-            if (selectedProduct === "" || category === selectedProduct) {
-              row.show();
+            if (selectedProduct === '' || selectedProduct === category) {
+              $(this).show();
             } else {
-              row.hide();
+              $(this).hide();
             }
           });
         });
+        // Initially, trigger the change event to show all rows
+        $('#productFilter').trigger('change');
       });
+
     </script>
 </body>
 
