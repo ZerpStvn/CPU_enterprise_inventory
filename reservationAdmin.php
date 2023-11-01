@@ -159,11 +159,20 @@
                                             <td>
                                                 <?php if ($hoursDifference >= 42 && $status == 0): ?>
                                                     <span class="badges bg-lightred">Expired</span>
+                                                    <span class="badges bg-lightyellow"><a
+                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
+                                                            style="color:white">View</a></span>
                                                 <?php elseif ($status == 0): ?>
                                                     <a href="#" class="accept-link badges bg-lightred" style="color:white"
                                                         data-reservation-id="<?php echo $reservationId; ?>">Claim</a>
+                                                    <span class="badges bg-lightyellow"><a
+                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
+                                                            style="color:white">View</a></span>
                                                 <?php else: ?>
                                                     <span class="badges bg-lightgreen">Claimed</span>
+                                                    <span class="badges bg-lightyellow"><a
+                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
+                                                            style="color:white">View</a></span>
                                                 <?php endif; ?>
 
                                             </td>

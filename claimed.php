@@ -126,6 +126,7 @@
                                     <th>School ID</th>
                                     <th>SKU</th>
                                     <th>Item Name</th>
+                                    <th>Date Claimed</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -145,6 +146,7 @@
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
+                                        $dateClaimed = $row['dateclaimed'];
                                         $reservationTime = strtotime($date); // Convert to Unix timestamp
                                         $currentTime = time();
                                         $hoursDifference = ($currentTime - $reservationTime) / 3600; // Calculate difference in hours
@@ -172,7 +174,9 @@
                                                         <?php echo $productName; ?>
                                                     </a>
                                                 </td>
-
+                                                <td>
+                                                    <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
+                                                </td>
                                                 <td>
 
 

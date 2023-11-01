@@ -19,14 +19,16 @@
                             <li><a href="addcategory.php">Add Category</a></li>
                         </ul>
                     </li>
-                    <li class="submenu">
+                    <li><a href="reservationAdmin.php"><img src="assets/img/icons/quotation1.svg" alt="img" /><span>
+                                Reservation List</span></a></li>
+                    <!-- <li class="submenu">
                         <a href="javascript:void(0);"><img src="assets/img/icons/quotation1.svg" alt="img" /><span>
                                 Reservation</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
                             <li><a href="reservationAdmin.php">Reservation List</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="">
                         <a href="adminRequest.php"><img src="assets/img/icons/eye1.svg" alt="img" /><span>
                                 Request</span>
