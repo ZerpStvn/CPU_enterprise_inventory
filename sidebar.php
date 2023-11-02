@@ -44,10 +44,16 @@
                         </a>
                     </li>
                     <li class="">
+                        <a href="returneditem.php"><img src="assets/img/icons/returned.svg" alt="img" /><span>
+                                Returned Item</span>
+                        </a>
+                    </li>
+                    <li class="">
                         <a href="claimed.php"><img src="assets/img/icons/product.svg" alt="img" /><span>
                                 Claimed Items</span>
                         </a>
                     </li>
+
                     <li class="">
                         <a href="userlist.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
                                 Students</span>

@@ -142,6 +142,7 @@
                                         $reservationId = $row['id'];
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
+                                        $returneditem = $row['returned'];
                                         $sku = $row['sku'];
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
@@ -154,37 +155,36 @@
                                         $formattedDate = $datehrs->format('F j, Y g:i a');
                                         $status = $row['status'];
                                         if ($status == 1) {
-                                            ?>
+                                            if ($returneditem == 0 || $returneditem == null) {
+                                                ?>
 
-                                            <tr>
-                                                <td>
-                                                    <?php echo $userName; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $schoolID; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $sku; ?>
-                                                </td>
-                                                <td class="productimgname">
-                                                    <a href="javascript:void(0);" class="product-img">
-                                                        <img src="<?php echo $productImage; ?>" alt="product">
-                                                    </a>
-                                                    <a href="javascript:void(0);">
-                                                        <?php echo $productName; ?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
-                                                </td>
-                                                <td>
-
-
-                                                    <span class="badges bg-lightgreen">Claimed</span>
-
-                                                </td>
-                                            </tr>
-                                            <?php
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $userName; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $schoolID; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $sku; ?>
+                                                    </td>
+                                                    <td class="productimgname">
+                                                        <a href="javascript:void(0);" class="product-img">
+                                                            <img src="<?php echo $productImage; ?>" alt="product">
+                                                        </a>
+                                                        <a href="javascript:void(0);">
+                                                            <?php echo $productName; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badges bg-lightgreen">Claimed</span>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
                                         }
 
                                     }
