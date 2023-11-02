@@ -8,7 +8,7 @@ $sku = $_POST['sku'];
 $minimumQuantity = $_POST['minimum_quantity'];
 $onStock = $_POST['on_stock'];
 $description = $_POST['description'];
-$price = $_POST['price'];
+$price = 0;
 $status = $_POST['status'];
 
 // Add the current date

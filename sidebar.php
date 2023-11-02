@@ -19,7 +19,7 @@
                             <li><a href="addcategory.php">Add Category</a></li>
                         </ul>
                     </li>
-                    <li><a href="reservationAdmin.php"><img src="assets/img/icons/quotation1.svg" alt="img" /><span>
+                    <li><a href="reservationAdmin.php"><img src="assets/img/icons/inventory2.svg" alt="img" /><span>
                                 Reservation List</span></a></li>
                     <!-- <li class="submenu">
                         <a href="javascript:void(0);"><img src="assets/img/icons/quotation1.svg" alt="img" /><span>
@@ -29,6 +29,15 @@
                             <li><a href="reservationAdmin.php">Reservation List</a></li>
                         </ul>
                     </li> -->
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="assets/img/icons/menuss.svg" alt="img" /><span>
+                                Stock Details</span>
+                            <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="reservationAdmin.php">Stock in</a></li>
+                            <li><a href="reservationAdmin.php">Transfer</a></li>
+                        </ul>
+                    </li>
                     <li class="">
                         <a href="adminRequest.php"><img src="assets/img/icons/eye1.svg" alt="img" /><span>
                                 Request</span>
