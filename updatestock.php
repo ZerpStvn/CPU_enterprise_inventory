@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userrole = $_POST["stockinuserrole"];
     $userstock = $_POST["stockinuser"];
     $prodid = $_POST["prodid"];
+    $sku = $_POST["numsku"];
     // Check if the input is a valid number
     if (!is_numeric($currentStock) || !is_numeric($userInput)) {
         echo "error: Invalid input.";
@@ -26,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             $stmt->close();
 
-            $stockinSql = "INSERT INTO stockin (stockdate, stockin, stockuser,productid,userrole) VALUES (NOW(), ?, ?,?,?)";
+            $stockinSql = "INSERT INTO stockin (stockdate, stockin, stockuser,productid,userrole, sku) VALUES (NOW(), ?, ?,?,?,?)";
             $stmt = $connection->prepare($stockinSql);
 
             if ($stmt) {
-                $stmt->bind_param("ssis", $userInput, $userstock, $prodid, $userrole);
+                $stmt->bind_param("ssiss", $userInput, $userstock, $prodid, $userrole, $sku);
 
                 if ($stmt->execute()) {
                     header("Location: productlist.php");

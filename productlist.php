@@ -160,6 +160,8 @@
                                 style="height: 50px; width: 95%; padding-left:10px" />
                               <input readonly type="hidden" name="prodid" id="prodid" value="<?php echo $productId; ?>"
                                 style="height: 30px; width: 50%; padding-left:10px" />
+                              <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
+                                style="height: 30px; width: 50%; padding-left:10px" />
                               <div>
                                 <button type="submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
                                 <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
@@ -184,7 +186,8 @@
                                 style="height: 50px; width: 80%; padding-left:10px" />
                               <Textarea placeholder="reason"
                                 style="resize: none; height: 90px; width: 80%; padding-left:10px"></Textarea>
-
+                              <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
+                                style="height: 30px; width: 50%; padding-left:10px" />
                               <div>
                                 <button type=" submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
                                 <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>

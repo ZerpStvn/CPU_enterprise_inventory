@@ -40,8 +40,7 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Return Item</h4>
-                        <p>Search for school ID or stock-keeping unit</p>
+                        <h4>Returned Item</h4>
                     </div>
 
                 </div>
@@ -61,7 +60,7 @@
                                             alt="img"></a>
                                 </div>
                             </div>
-                            <div class="wordset">
+                            <!-- <div class="wordset">
                                 <ul>
                                     <li>
                                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
@@ -76,7 +75,7 @@
                                                 src="assets/img/icons/printer.svg" alt="img"></a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="card" id="filter_inputs">
@@ -156,7 +155,7 @@
                                         $formattedDate = $datehrs->format('F j, Y g:i a');
                                         $status = $row['status'];
                                         if ($status == 1) {
-                                            if ($returneditem == 0 || $returneditem == null) {
+                                            if ($returneditem == 1) {
                                                 ?>
 
                                                 <tr>
@@ -181,8 +180,8 @@
                                                         <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
                                                     </td>
                                                     <td>
-                                                        <a href="#" class="return-link badges bg-lightyellow"
-                                                            data-return-id="<?php echo $reservationId; ?>">Return</a>
+                                                        <a href="#" style="color: white"
+                                                            class="return-link badges bg-lightred">Returned</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -234,7 +233,6 @@
     <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/return.js"> </script>
 </body>
 
 </html>

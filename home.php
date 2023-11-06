@@ -312,10 +312,10 @@
                         }
                       } else {
                         ?>
-                      <tr>
-                        <td colspan="3">No inventory data found within the specified timeframe</td>
-                      </tr>
-                      <?php
+                        <tr>
+                          <td colspan="3">No inventory data found within the specified timeframe</td>
+                        </tr>
+                        <?php
                       }
 
                       ?>

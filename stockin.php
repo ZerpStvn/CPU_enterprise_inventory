@@ -104,77 +104,52 @@
                         <table class="table datanew">
                             <thead>
                                 <tr>
-                                    <th>User Name</th>
-                                    <th>School ID</th>
+                                    <th>Date Re-Stock</th>
+                                    <th>Stock Amount</th>
                                     <th>SKU</th>
-                                    <th>Item Name</th>
-                                    <th>Date Reserved</th>
-                                    <th>Action</th>
+                                    <th>Producid</th>
+                                    <th>User</th>
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 require_once 'config.php';
 
-                                $query = "SELECT * FROM reservations";
+                                $query = "SELECT * FROM stockin";
                                 $result = mysqli_query($connection, $query);
 
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        $reservationId = $row['id'];
-                                        $userName = $row['userName'];
-                                        $schoolID = $row['schoolID'];
+                                        $stockid = $row['productid'];
+                                        $userrole = $row['userrole'];
+                                        $username = $row['stockuser'];
                                         $sku = $row['sku'];
-                                        $productImage = $row['image'];
-                                        $productName = $row['product_name'];
-                                        $date = $row['date'];
-                                        $reservationTime = strtotime($date); // Convert to Unix timestamp
+                                        $stockamount = $row['stockin'];
+                                        $date = $row['stockdate'];
+                                        $stockdate = strtotime($date);
                                         $currentTime = time();
-                                        $hoursDifference = ($currentTime - $reservationTime) / 3600; // Calculate difference in hours
                                         $datehrs = new DateTime($date);
                                         $formattedDate = $datehrs->format('F j, Y g:i a');
-                                        $status = $row['status'];
                                         ?>
                                         <tr>
-                                            <td>
-                                                <?php echo $userName; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $schoolID; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $sku; ?>
-                                            </td>
-                                            <td class="productimgname">
-                                                <a href="javascript:void(0);" class="product-img">
-                                                    <img src="<?php echo $productImage; ?>" alt="product">
-                                                </a>
-                                                <a href="javascript:void(0);">
-                                                    <?php echo $productName; ?>
-                                                </a>
-                                            </td>
                                             <td>
                                                 <?php echo $formattedDate; ?>
                                             </td>
                                             <td>
-                                                <?php if ($hoursDifference >= 42 && $status == 0): ?>
-                                                    <span class="badges bg-lightred">Expired</span>
-                                                    <span class="badges bg-lightyellow"><a
-                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
-                                                            style="color:white">View</a></span>
-                                                <?php elseif ($status == 0): ?>
-                                                    <a href="#" class="accept-link badges bg-lightred" style="color:white"
-                                                        data-reservation-id="<?php echo $reservationId; ?>">Claim</a>
-                                                    <span class="badges bg-lightyellow"><a
-                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
-                                                            style="color:white">View</a></span>
-                                                <?php else: ?>
-                                                    <span class="badges bg-lightgreen">Claimed</span>
-                                                    <span class="badges bg-lightyellow"><a
-                                                            href="reservationView.php?reservationId=<?php echo $reservationId ?>"
-                                                            style="color:white">View</a></span>
-                                                <?php endif; ?>
-
+                                                <?php echo $stockamount; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $sku; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $stockid; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $username; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $userrole; ?>
                                             </td>
                                         </tr>
                                         <?php

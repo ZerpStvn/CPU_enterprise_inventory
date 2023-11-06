@@ -81,10 +81,7 @@
                     $query = "SELECT * FROM notification";
                     $result = mysqli_query($connection, $query);
 
-                    $count_query = "SELECT COUNT(*) as notification_count FROM notification WHERE status = request";
 
-                    $notification_count = mysqli_query($connection, $count_query);
-                    ;
 
                     // Check if there are notifications
                     if (mysqli_num_rows($result) > 0) {
@@ -92,7 +89,7 @@
                         <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                             <img src="assets/img/icons/notification-bing.svg" alt="img" />
                             <span class="badge rounded-pill">
-                                <?php echo $notification_count; ?>
+
                             </span>
                         </a>
                         <div class="dropdown-menu notifications">
