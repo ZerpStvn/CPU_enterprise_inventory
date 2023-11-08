@@ -138,7 +138,7 @@
                             <?php else: ?>
                                 <a href="#" class="accept-link btn btn-submit me-2"
                                     data-reservation-id="<?php echo $reservedID; ?>">CLAIM</a>
-                                <a id="" class="btn btn-submit me-2">CANCEL</a>
+                                <a href="reservationAdmin.php" id="" class="btn btn-submit me-2">CANCEL</a>
                             <?php endif ?>
                         </div>
                     </div>

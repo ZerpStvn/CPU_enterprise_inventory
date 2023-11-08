@@ -10,7 +10,7 @@
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
     <title>
-        Stockin</title>
+        Transfers</title>
     <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -41,7 +41,7 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Stock In Logs </h4>
+                        <h4>Transfers Logs </h4>
                     </div>
 
                 </div>

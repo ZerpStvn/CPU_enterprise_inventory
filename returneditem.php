@@ -61,7 +61,7 @@
                                             alt="img"></a>
                                 </div>
                             </div>
-                            <div class="wordset">
+                            <!-- <div class="wordset">
                                 <ul>
                                     <li>
                                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
@@ -76,7 +76,7 @@
                                                 src="assets/img/icons/printer.svg" alt="img"></a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="card" id="filter_inputs">
@@ -142,6 +142,7 @@
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         $reservationId = $row['id'];
                                         $userName = $row['userName'];
+                                        $productid = $row['productid'];
                                         $schoolID = $row['schoolID'];
                                         $returneditem = $row['returned'];
                                         $sku = $row['sku'];
@@ -181,8 +182,9 @@
                                                         <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
                                                     </td>
                                                     <td>
-                                                        <a href="#" class="return-link badges bg-lightyellow"
-                                                            data-return-id="<?php echo $reservationId; ?>">Return</a>
+                                                        <a style="color:white" href="#" class="return-link badges bg-lightyellow"
+                                                            data-return-id="<?php echo $reservationId; ?> "
+                                                            data-product-id="<?php echo $productid ?>">Return</a>
                                                     </td>
                                                 </tr>
                                                 <?php

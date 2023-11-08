@@ -140,6 +140,7 @@
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         $reservationId = $row['id'];
+                                        $productid = $row['productid'];
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
                                         $returneditem = $row['returned'];

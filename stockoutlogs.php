@@ -10,7 +10,7 @@
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
     <title>
-        Stockin</title>
+        Stock out</title>
     <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -41,7 +41,7 @@
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Stock In Logs </h4>
+                        <h4>Stockout Logs </h4>
                     </div>
 
                 </div>
@@ -105,7 +105,7 @@
                         <table class="table datanew">
                             <thead>
                                 <tr>
-                                    <th>Date Re-Stock</th>
+                                    <th>Date</th>
                                     <th>Stock Amount</th>
                                     <th>SKU</th>
                                     <th>Producid</th>
@@ -117,16 +117,16 @@
                                 <?php
                                 require_once 'config.php';
 
-                                $query = "SELECT * FROM stockin";
+                                $query = "SELECT * FROM stockout";
                                 $result = mysqli_query($connection, $query);
 
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        $stockid = $row['productid'];
+                                        $stockid = $row['prodid'];
                                         $userrole = $row['userrole'];
                                         $username = $row['stockuser'];
                                         $sku = $row['sku'];
-                                        $stockamount = $row['stockin'];
+                                        $stockamount = $row['stockout'];
                                         $date = $row['stockdate'];
                                         $stockdate = strtotime($date);
                                         $currentTime = time();

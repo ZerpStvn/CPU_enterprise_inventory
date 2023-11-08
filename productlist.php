@@ -134,13 +134,15 @@
 
                       ?>
                       <div class="restock-value restock-value-<?php echo $productId; ?>">
+
                         <div class="inputcontainer">
+                          <a href="" class="closedid"><img src="assets/img/closed.svg" alt=""></a>
                           <h4 class="form-stock-h4" style="text-align:center; font-size:28px">Select Option</h4>
                           <div style="display:flex;">
                             <button class="btn btn-submit me-2 stock-in-button" data-product-id="<?php echo $productId; ?>"
                               data-on-stock="<?php echo $onStock; ?>">Stock in</button>
                             <button class="btn btn-submit me-2 stock-out-button" data-product-id="<?php echo $productId; ?>"
-                              data-on-stock="<?php echo $onStock; ?>">Transfer</button>
+                              data-on-stock="<?php echo $onStock; ?>">Stock out</button>
                           </div>
                           <div class="stock-in-form" data-product-id="<?php echo $productId; ?>"
                             data-on-stock="<?php echo $onStock; ?>">
@@ -173,7 +175,7 @@
                             <form class="cardformstock" action="stockout.php" method="POST" id="restockid">
                               <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
                               <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
-                              <label style="font-size:24px">TRANSFER</label>
+                              <label style="font-size:24px">STOCK OUT</label>
                               <div style="display:flex; gap:10px;">
 
                                 <input readonly type="hidden" name="stockinuser" id="stockinuser"
@@ -184,8 +186,6 @@
                               </div>
                               <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
                                 style="height: 50px; width: 80%; padding-left:10px" />
-                              <Textarea placeholder="reason"
-                                style="resize: none; height: 90px; width: 80%; padding-left:10px"></Textarea>
                               <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
                                 style="height: 30px; width: 50%; padding-left:10px" />
                               <div>

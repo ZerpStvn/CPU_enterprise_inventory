@@ -123,12 +123,6 @@
                             <table class="table  datanew">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <label class="checkboxs">
-                                                <input type="checkbox" id="select-all">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </th>
                                         <th>Category name</th>
                                         <th>Category Code</th>
                                         <th>Description</th>
@@ -150,12 +144,7 @@
                                             $description = $row["description"];
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <label class="checkboxs">
-                                                        <input type="checkbox">
-                                                        <span class="checkmarks"></span>
-                                                    </label>
-                                                </td>
+
                                                 <td class="productimgname">
                                                     <a href="javascript:void(0);">
                                                         <?= $categoryName ?>

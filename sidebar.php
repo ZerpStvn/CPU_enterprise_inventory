@@ -24,7 +24,9 @@
                                 Stock Details</span>
                             <span class="menu-arrow"></span></a>
                         <ul>
+
                             <li><a href="stockin.php">Stock in</a></li>
+                            <li><a href="stockoutlogs.php">Stock out</a></li>
                             <li><a href="reservationAdmin.php">Transfer</a></li>
                         </ul>
                     </li>

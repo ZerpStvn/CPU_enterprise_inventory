@@ -2,13 +2,13 @@ $(document).ready(function () {
   $(".return-link").click(function (e) {
     e.preventDefault();
     var returnID = $(this).data("return-id");
-    var link = $(this);
-    alert(returnID);
+    var productID = $(this).data("product-id");
+
     $.ajax({
       url: "search.php",
       type: "POST",
       dataType: "json",
-      data: { returnid: returnID },
+      data: { returnid: returnID, productid: productID },
       success: function (response) {
         if (response.status === "success") {
           location.reload();
