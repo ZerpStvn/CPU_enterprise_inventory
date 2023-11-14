@@ -20,7 +20,6 @@ function sendVerificationEmail($verificationLink, $gmail)
 {
     $subject = "Email Verification";
     $message = "Please click the following link to verify your email address: $verificationLink";
-    $headers = "From: your_email@example.com";
 
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -28,8 +27,8 @@ function sendVerificationEmail($verificationLink, $gmail)
     $mail->SMTPAuth = true;
     $mail->Username = 'cpudining@gmail.com';
     $mail->Password = 'uginxxttjsnglaja';
-    $mail->SMTPSecure = 'ssl';
-    $mail->Port = 465;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
     $mail->setFrom('cpudining@gmail.com');
     $mail->addAddress($gmail);
     $mail->isHTML(true);

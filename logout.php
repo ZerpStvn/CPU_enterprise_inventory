@@ -1,14 +1,14 @@
 <?php
-// Start the session (assuming sessions are used for login)
 session_start();
 
-// Clear all session variables
+// Unset all session variables
 $_SESSION = array();
 
-// Destroy the session
+// Regenerate session ID and destroy the session
+session_regenerate_id(true);
 session_destroy();
 
-// Redirect the user to the login page or any other appropriate page
+// Redirect to the login page
 header("Location: index.php");
 exit();
 ?>
