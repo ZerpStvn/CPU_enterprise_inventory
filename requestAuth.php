@@ -41,9 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt2->affected_rows > 0) {
                 mysqli_commit($connection);
-                echo "Request successful";
             } else {
-                // Rollback the transaction if the reservation or notification failed
                 mysqli_rollback($connection);
                 echo "Request failed";
             }

@@ -75,7 +75,7 @@
             <div class="signinform text-center">
               <h4>
                 Dont have an account?
-                <a href="signup.php" class="hover-a">Sign Up</a>
+                <a href="signup.php" class="hover-a">Register</a>
               </h4>
             </div>
           </div>

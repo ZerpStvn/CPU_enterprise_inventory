@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             sendVerificationEmail($verificationLink, $email);
 
             // Redirect to the homepage
-            header("Location: index.php");
+            header("Location: signconfirm.php");
             exit();
         } else {
             die("Error: " . mysqli_error($connection));

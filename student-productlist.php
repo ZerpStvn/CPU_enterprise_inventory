@@ -241,6 +241,8 @@
 
     <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/request.js"></script>
     <script src="assets/js/reserve.js"></script>
     <script src="assets/js/script.js"></script>

@@ -18,9 +18,12 @@ $(document).ready(function () {
         schoolID: schoolID,
         userID: userID,
       },
-      success: function (response) {
-        alert(response);
-        location.reload();
+      success: function () {
+        swal("Reservation Sent", "CPU ENTERPRISE", "success").then(function () {
+          location.reload();
+        });
+
+        // alert(response);
       },
       error: function () {
         alert("Reservation failed. Please try again.");

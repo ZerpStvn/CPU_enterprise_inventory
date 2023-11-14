@@ -17,10 +17,9 @@ $(document).ready(function () {
         userID: userID,
       },
       success: function (response) {
-        // Reservation was successful
-        alert(response);
-        // Refresh the page to update the inventory
-        location.reload();
+        swal("Request Sent", "CPU ENTERPRISE", "success").then(function () {
+          location.reload();
+        });
       },
       error: function () {
         // Reservation failed

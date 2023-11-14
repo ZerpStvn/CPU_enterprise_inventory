@@ -73,11 +73,11 @@
                                 </div>
                             </div>
                             <div class="form-login">
-                                <button type="submit" class="btn btn-login">Sign In</button>
+                                <button type="submit" class="btn btn-login">Register</button>
                             </div>
                         </form>
                         <div class="signinform text-center">
-                            <h4>Already a user? <a href="index.php" class="hover-a">Sign In</a></h4>
+                            <h4>Already a user? <a href="index.php" class="hover-a">Sign in</a></h4>
                         </div>
                         <div class="form-sociallink">
 

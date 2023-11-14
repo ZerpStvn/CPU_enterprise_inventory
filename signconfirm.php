@@ -30,18 +30,14 @@
                 CPU <span>ENTERPRISE</span>
 
             </h2>
-            <p>Confirm to Verify your email
-
-            </p>
-            <a href="verifyconfirm.php?token=<?php
-            $verificationToken = $_GET['token'];
-            echo $verificationToken; ?>">Verify Email</a>
+            <p>To Continue Please Verify your email</p>
+            <a href="https://mail.google.com/">Check Email</a>
         </section>
     </div>
     </div>
 
 
-    <script src=" assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
 
     <script src="assets/js/feather.min.js"></script>
 
