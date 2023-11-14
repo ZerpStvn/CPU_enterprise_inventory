@@ -23,24 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         if ($user['status'] == 'Active') {
-            // Store user data in session variables for access in other pages
             session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['schoolID'] = $user['schoolID'];
             $_SESSION['user_role'] = $user['role'];
 
-            // Close the statement and database connection
             $stmt->close();
             $connection->close();
 
-            // Redirect user based on their role
             if ($user['role'] == 'admin') {
                 header("Location: home.php");
             } else {
                 header("Location: student-productlist.php");
             }
             exit();
+        }
+        if ($user['status'] == "Pending") {
+            echo "<script>alert('Please Verify your account.');</script>";
         } else {
             echo "<script>alert('You are restricted to access. Please contact an administrator.');</script>";
         }
