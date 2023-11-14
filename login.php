@@ -40,12 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
         if ($user['status'] == "Pending") {
-            echo "<script>alert('Please Verify your account.');</script>";
+            header("Location: signconfirm.php");
+            ;
         } else {
             echo "<script>alert('You are restricted to access. Please contact an administrator.');</script>";
         }
     } else {
-        echo "<script>alert('Invalid email or password.');</script>";
+        echo "<script>alert('Invalid Email and Password');</script>";
     }
 }
 ?>
