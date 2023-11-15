@@ -114,7 +114,6 @@
                                                     mysqli_stmt_execute($user_stmt);
                                                     $user_result = mysqli_stmt_get_result($user_stmt);
                                                     $user_data = mysqli_fetch_assoc($user_result);
-                                                    $user_name = $user_data['name'];
 
                                                     // Fetch product name based on productid from the inventory table
                                                     $product_query = "SELECT sku FROM inventory WHERE id = ?";
