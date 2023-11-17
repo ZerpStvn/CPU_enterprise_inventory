@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($insertResult) {
             // Send verification email
-            $verificationLink = "http://localhost/cpu_enterprise_inventory/verify.php?token=" . $verificationToken;
+            $verificationLink = "https://cpuenterprise.store/verify.php?token=" . $verificationToken;
             sendVerificationEmail($verificationLink, $email);
 
             // Redirect to the homepage
