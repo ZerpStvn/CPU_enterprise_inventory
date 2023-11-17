@@ -108,9 +108,11 @@
                                     <th>Date</th>
                                     <th>Stock Amount</th>
                                     <th>SKU</th>
+                                    <th>Reason</th>
                                     <th>Producid</th>
                                     <th>User</th>
                                     <th>Role</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,6 +128,7 @@
                                         $userrole = $row['userrole'];
                                         $username = $row['stockuser'];
                                         $sku = $row['sku'];
+                                        $rsn = $row['reason'];
                                         $stockamount = $row['stockout'];
                                         $date = $row['stockdate'];
                                         $stockdate = strtotime($date);
@@ -142,6 +145,9 @@
                                             </td>
                                             <td>
                                                 <?php echo $sku; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $rsn; ?>
                                             </td>
                                             <td>
                                                 <?php echo $stockid; ?>

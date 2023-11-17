@@ -27,7 +27,7 @@
 
                             <li><a href="stockin.php">Stock in</a></li>
                             <li><a href="stockoutlogs.php">Stock out</a></li>
-                            <li><a href="reservationAdmin.php">Transfer</a></li>
+
                         </ul>
                     </li>
                     <li><a href="reservationAdmin.php"><img src="assets/img/icons/inventory2.svg" alt="img" /><span>

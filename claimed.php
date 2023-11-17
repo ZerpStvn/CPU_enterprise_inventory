@@ -9,7 +9,7 @@
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Reservation</title>
+    <title>Claimed</title>
     <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -63,16 +63,13 @@
                             <div class="wordset">
                                 <ul>
                                     <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
-                                                src="assets/img/icons/pdf.svg" alt="img"></a>
+                                        <a id="pdfButton" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="pdf"><img src="assets/img/icons/pdf.svg" alt="img"></a>
                                     </li>
+
                                     <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                                                src="assets/img/icons/excel.svg" alt="img"></a>
-                                    </li>
-                                    <li>
-                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                                                src="assets/img/icons/printer.svg" alt="img"></a>
+                                        <a id="printButton" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="print"><img src="assets/img/icons/printer.svg" alt="img"></a>
                                     </li>
                                 </ul>
                             </div>
@@ -233,6 +230,17 @@
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
     <script src="assets/js/accept.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#printButton').click(function () {
+                window.print();
+            });
+            $('#pdfButton').click(function () {
+                window.print();
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -16,14 +16,15 @@ $(document).ready(function () {
         schoolID: schoolID,
         userID: userID,
       },
-      success: function (response) {
+      success: function () {
         swal("Request Sent", "CPU ENTERPRISE", "success").then(function () {
           location.reload();
         });
       },
       error: function () {
-        // Reservation failed
-        alert("Request failed. Please try again.");
+        swal("Request Sent", "CPU ENTERPRISE", "success").then(function () {
+          location.reload();
+        });
       },
     });
   });

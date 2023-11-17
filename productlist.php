@@ -170,6 +170,8 @@
                               </div>
                             </form>
                           </div>
+
+                          <!-- stockout -->
                           <div class="stock-in-out" data-product-id="<?php echo $productId; ?>"
                             data-on-stock="<?php echo $onStock; ?>">
                             <form class="cardformstock" action="stockout.php" method="POST" id="restockid">
@@ -186,6 +188,10 @@
                               </div>
                               <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
                                 style="height: 50px; width: 80%; padding-left:10px" />
+
+                              <textarea name="rsn" id="rsn" rows="10"
+                                style="height: 70px;  resize: none; width: 80%; padding-left:10px" placeholder="
+                                Reason"></textarea>
                               <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
                                 style="height: 30px; width: 50%; padding-left:10px" />
                               <div>
