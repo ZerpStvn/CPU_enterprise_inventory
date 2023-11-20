@@ -19,17 +19,52 @@ function sanitizeInput($input)
 function sendVerificationEmail($verificationLink, $gmail)
 {
     $subject = "Email Verification";
-    $message = "Please click the following link to verify your email address: $verificationLink";
+    $message = "<table style=\"font-family: sans-serif; margin: auto\">
+    <thead>
+      <tr>
+        <th>
+          <p style=\"font-size: 54px; color: #1f1750; font-weight: bolder\">
+            CPU
+            <span style=\"color: #fcc60c; font-weight: bolder\">ENTERPRISE</span>
+          </p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style=\"text-align: center\">
+        <td>
+          <p style=\"margin-bottom: 20px\">
+             Verify this email: $gmail <br />
+          </p>
+        </td>
+      </tr>
+      <tr style=\"text-align: center\">
+        <td>
+          <a
+            style=\"
+              text-decoration: none;
+              color: white;
+              background-color: #1f1750;
+              padding: 10px 20px;
+            \"
+            href=\"" . htmlspecialchars($verificationLink) . "\"
+          >
+            VERIFY</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>";
 
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = 'cpudining@gmail.com';
-    $mail->Password = 'uginxxttjsnglaja';
+    $mail->Username = 'enterprisecpu@gmail.com';
+    $mail->Password = 'olrp tvtf vvaf xrdk';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
-    $mail->setFrom('cpudining@gmail.com');
+    $mail->setFrom('enterprisecpu@gmail.com');
     $mail->addAddress($gmail);
     $mail->isHTML(true);
 
