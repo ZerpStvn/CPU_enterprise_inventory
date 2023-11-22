@@ -30,7 +30,9 @@
 </head>
 
 <body>
-
+    <div id="global-loader">
+        <div class="whirly-loader"> </div>
+    </div>
     <?php
     session_start();
     ?>
@@ -63,8 +65,8 @@
                             <tbody>
                                 <?php
                                 require_once 'config.php';
-
-                                $query = "SELECT * FROM request";
+                                $usrid = $_GET['id'];
+                                $query = "SELECT * FROM request WHERE userID = $usrid";
                                 $result = mysqli_query($connection, $query);
 
                                 if (mysqli_num_rows($result) > 0) {

@@ -98,52 +98,63 @@
 
                             </div>
                         </div>
-                        <form action="updateprofile.php" method="post" class="row">
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" value="<?php echo $userdata['name'] ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <input type="text" value="<?php echo $userdata['role'] ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" value="<?php echo $userdata['email'] ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" value="<?php echo $userdata['mobile_number'] ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <input type="text" value="<?php echo $userdata['status'] ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <div class="pass-group">
-                                        <input type="password" class=" pass-input"
-                                            value="<?php echo $userdata['password'] ?>">
-                                        <span class="fas toggle-password fa-eye-slash"></span>
+                        <div class="editactive">
+                            <form action="updateprofile.php" method="post" class="row">
+                                <input type="hidden" name="userid" value="<?php echo $_GET['user_id'] ?>">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" name="fname"
+                                            value="<?php echo isset($_POST['fname']) && !empty($_POST['fname']) ? htmlspecialchars($_POST['fname']) : htmlspecialchars($userdata['name']); ?>"
+                                            placeholder="<?php echo $userdata['name'] ?>">
                                     </div>
                                 </div>
-                            </div>
-                            <!-- <div class="col-12">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['role'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['email'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" name="phone"
+                                            value="<?php echo isset($_POST['phone']) && !empty($_POST['phone']) ? htmlspecialchars($_POST['phone']) : htmlspecialchars($userdata['mobile_number']); ?>"
+                                            placeholder="<?php echo $userdata['mobile_number'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['status'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <div class="pass-group">
+                                            <input type="password" name="password" class=" pass-input"
+                                                value="<?php echo isset($_POST['password']) && !empty($_POST['password']) ? htmlspecialchars($_POST['password']) : htmlspecialchars($userdata['password']); ?>">
+                                            <span class="fas toggle-password fa-eye-slash"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12">
                                 <input type="submit" class="btn btn-submit me-2">Update</input>
                                 <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
                             </div> -->
-                        </form>
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-submit me-2" placeholder="update" />
+                                    <a href="student-productlist.php" class="btn btn-cancel">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

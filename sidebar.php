@@ -93,16 +93,19 @@
                             <span class="menu-arrow"></span></a>
                         <ul>
                             <li><a href="student-productlist.php">Product</a></li>
-                            <li><a href="reservationStudentRecod.php">Reservation Record</a></li>
+                            <li><a href="reservationStudentRecod.php?id=<?php echo $_SESSION['user_id'] ?> ">Reservation
+                                    Record</a></li>
                         </ul>
                     </li>
                     <li class="">
-                        <a href="requestStudent.php"><img src="assets/img/icons/users1.svg" alt="img" /><span>
+                        <a href="requestStudent.php?id=<?php echo $_SESSION['user_id'] ?>"><img
+                                src="assets/img/icons/users1.svg" alt="img" /><span>
                                 Request</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="cliamed_student.php"><img src="assets/img/icons/product.svg" alt="img" /><span>
+                        <a href="cliamed_student.php?id=<?php echo $_SESSION['user_id'] ?>"><img
+                                src="assets/img/icons/product.svg" alt="img" /><span>
                                 Claimed Reservation</span>
                         </a>
                     </li>

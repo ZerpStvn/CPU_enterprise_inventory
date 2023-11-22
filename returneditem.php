@@ -149,6 +149,7 @@
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
+                                        $qnty = $row['qtny'];
                                         $dateClaimed = $row['returndate'];
                                         $reservationTime = strtotime($date); // Convert to Unix timestamp
                                         $currentTime = time();
@@ -182,6 +183,8 @@
                                                         <?php echo date("F d, Y", strtotime($dateClaimed)); ?>
                                                     </td>
                                                     <td>
+                                                        <input type="hidden" id="qnty_<?php echo $reservationId; ?>"
+                                                            value="<?php echo $qnty ?>">
                                                         <a style="color:white" href="#" class="return-link badges bg-lightyellow"
                                                             data-return-id="<?php echo $reservationId; ?> "
                                                             data-product-id="<?php echo $productid ?>">Return</a>

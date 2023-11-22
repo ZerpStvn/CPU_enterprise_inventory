@@ -4,7 +4,7 @@ require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productId = $_POST['productId'];
-
+    $qnty = $_POST['qnty'];
     if (isset($_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['schoolID'])) {
         $userID = $_SESSION['user_id'];
         $userName = $_SESSION['user_name'];
@@ -19,17 +19,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_begin_transaction($connection);
 
     try {
-        $updateQuery = "UPDATE inventory SET on_stock = on_stock - 1 WHERE id = ?";
+        $updateQuery = "UPDATE inventory SET on_stock = on_stock - ? WHERE id = ?";
         $stmt = $connection->prepare($updateQuery);
-        $stmt->bind_param('i', $productId);
+        $stmt->bind_param('ii', $qnty, $productId);
         $stmt->execute();
         $stmt->close();
-        $insertQuery = "INSERT INTO reservations (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name)
-        SELECT id,NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name
+        $insertQuery = "INSERT INTO reservations (productid, date, name, category, sku, description, image, status, userID, userName, schoolID, product_name,qtny)
+        SELECT id,NOW(), ?, category, sku, description, image, ?, ?, ?, ?, product_name, ?
         FROM inventory
         WHERE id = ?";
         $stmt = $connection->prepare($insertQuery);
-        $stmt->bind_param('siissi', $userName, $status, $userID, $userName, $schoolID, $productId);
+        $stmt->bind_param('siissii', $userName, $status, $userID, $userName, $schoolID, $qnty, $productId);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {

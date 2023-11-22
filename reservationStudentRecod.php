@@ -77,8 +77,8 @@
                             <tbody>
                                 <?php
                                 require_once 'config.php';
-
-                                $query = "SELECT * FROM reservations";
+                                $usrid = $_GET['id'];
+                                $query = "SELECT * FROM reservations WHERE userID = $usrid";
                                 $result = mysqli_query($connection, $query);
 
                                 if (mysqli_num_rows($result) > 0) {

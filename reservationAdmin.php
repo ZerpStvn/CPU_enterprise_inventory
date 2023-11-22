@@ -108,8 +108,10 @@
                                     <th>School ID</th>
                                     <th>SKU</th>
                                     <th>Item Name</th>
+                                    <th>Quantity</th>
                                     <th>Date Reserved</th>
                                     <th>Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -125,6 +127,7 @@
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
                                         $sku = $row['sku'];
+                                        $qnty = $row['qtny'];
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
@@ -145,6 +148,7 @@
                                             <td>
                                                 <?php echo $sku; ?>
                                             </td>
+
                                             <td class="productimgname">
                                                 <a href="javascript:void(0);" class="product-img">
                                                     <img src="<?php echo $productImage; ?>" alt="product">
@@ -152,6 +156,9 @@
                                                 <a href="javascript:void(0);">
                                                     <?php echo $productName; ?>
                                                 </a>
+                                            </td>
+                                            <td>
+                                                <?php echo $qnty; ?>
                                             </td>
                                             <td>
                                                 <?php echo $formattedDate; ?>

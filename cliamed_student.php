@@ -29,7 +29,9 @@
 </head>
 
 <body>
-
+    <div id="global-loader">
+        <div class="whirly-loader"> </div>
+    </div>
 
     <div class="main-wrapper">
         <?php include 'header.php'; ?>
@@ -74,12 +76,12 @@
                             <tbody>
                                 <?php
                                 require_once 'config.php';
-
-                                $query = "SELECT * FROM reservations WHERE status=1";
+                                $usrid = $_GET['id'];
+                                $query = "SELECT * FROM reservations WHERE userID = $usrid";
                                 $result = mysqli_query($connection, $query);
 
-                                if (mysqli_num_rows($result) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
+                                if (mysqli_num_rows($result) > 0):
+                                    while ($row = mysqli_fetch_assoc($result)):
                                         $reservationId = $row['id'];
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
@@ -87,6 +89,7 @@
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
+                                        $rtn = $row['returned'];
                                         $reservationTime = strtotime($date); // Convert to Unix timestamp
                                         $currentTime = time();
                                         $hoursDifference = ($currentTime - $reservationTime) / 3600; // Calculate difference in hours
@@ -95,13 +98,15 @@
                                         $formattedDate = $datehrs->format('F j, Y g:i a');
                                         $status = $row['status'];
 
-                                        if ($hoursDifference >= 42 && $status == 0) {
+                                        if ($hoursDifference >= 42 && $status == 0):
                                             $statusLabel = "<span class='badges bg-lightred'>Expired</span>";
-                                        } elseif ($status == 0) {
+                                        elseif ($rtn == 1):
+                                            $statusLabel = "<span class='badges bg-lightred'>Returned</span>";
+                                        elseif ($status == 0):
                                             $statusLabel = "<span class='badges bg-lightred'>Pending</span>";
-                                        } else {
+                                        else:
                                             $statusLabel = "<span class='badges bg-lightgreen'>Claimed</span>";
-                                        }
+                                        endif;
                                         ?>
                                         <tr>
                                             <td>
@@ -122,24 +127,23 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <span class="badges bg-lightgreen">Claimed</span>
+                                                <?php echo $statusLabel; ?>
                                             </td>
-
                                         </tr>
                                         <?php
-                                    }
-                                } else {
+                                    endwhile;
+                                else:
                                     ?>
                                     <tr>
-                                        <td colspan="6">No reservation data found</td>
+                                        <td colspan="5">No reservation data found</td>
                                     </tr>
                                     <?php
-                                }
+                                endif;
 
                                 mysqli_close($connection);
                                 ?>
-
                             </tbody>
+
                         </table>
 
                     </div>

@@ -109,13 +109,13 @@
                                         <li>
                                             <h4>on stock</h4>
                                             <h6>
-                                                <?php echo $product['on_stock']; ?>
+                                                <?php echo $product['minimum_quantity']; ?>
                                             </h6>
                                         </li>
                                         <li>
                                             <h4>Stock level</h4>
                                             <h6>
-                                                <?php echo $product['minimum_quantity']; ?>
+                                                <?php echo $product['on_stock']; ?>
                                             </h6>
                                         </li>
                                         <li>

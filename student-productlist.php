@@ -34,7 +34,7 @@
         width: 100%;
         display: flex;
         padding: 10px;
-
+        flex-wrap: wrap;
     }
 
     .section {
@@ -126,7 +126,7 @@
                         $image = $row['image'];
 
                         // Check if the current user has reserved this product
-                        $reservationQuery = "SELECT * FROM reservations WHERE productid = '$productId' AND userID = '$userID'";
+                        $reservationQuery = "SELECT * FROM reservations WHERE productid = '$productId' AND userID = '$userID'  AND returned = null";
                         $reservationResult = mysqli_query($connection, $reservationQuery);
 
                         // Check if the current user has sent a request for this product
@@ -151,12 +151,17 @@
                                                 <?php echo $sku ?>
                                                 <br />
                                                 <?php echo $productName ?>
+                                                <input readonly
+                                                    style="text-align:center; display:flex;align-items:center;justify-content:center; width:30%;"
+                                                    type="number" placeholder="Reserved">
+
                                             </p>
                                             <div class="button button_reserve">
                                                 <a style="color:white; margin-top: 20px; margin-right:4px"
                                                     href="product-details.php?id=<?php echo $productId ?>"
                                                     class="badges bg-lightgreen">View</a>
-                                                <a style="color:white; margin-top: 20px;" href="reservationStudentRecod.php"
+                                                <a style="color:white; margin-top: 20px;"
+                                                    href="reservationStudentRecod.php?id=<?php echo $userID ?>"
                                                     class="badges bg-lightyellow">Reserved</a>
                                             </div>
                                         </div>
@@ -168,7 +173,7 @@
                         } else {
                             // User has not reserved this product
                             ?>
-                            <a href="product-details.php?id=<?php echo $productId ?>" style="color:black;">
+                            <a href="#" style="color:black;">
                                 <div class="cardproduct">
                                     <div class="section">
                                         <div class="stock"
@@ -182,20 +187,32 @@
                                                 <?php echo $sku ?>
                                                 <br />
                                                 <?php echo $productName ?>
+                                                <br>
+                                                <input placeholder="quants"
+                                                    style="text-align:center; display:flex;align-items:center;justify-content:center; width:30%;"
+                                                    type="hidden" id="onstock_<?php echo $productId; ?>"
+                                                    value="<?php echo $onStock; ?>" name="onstock">
+                                                <input placeholder="Quantity"
+                                                    style="text-align:center; display:flex;align-items:center;justify-content:center; width:30%;"
+                                                    type="number" id="qnty_<?php echo $productId; ?>"
+                                                    data-productid="<?php echo $productId; ?>" name="qnty">
+
                                             </p>
+
                                             <div class="button">
                                                 <?php if ($onStock > 0) { ?>
                                                     <a style="color:white; margin-top: 0px; margin-right:4px"
                                                         href="product-details.php?id=<?php echo $productId ?>"
                                                         class="badges bg-lightgreen">View</a>
-                                                    <a style="color:white" class="badges bg-lightgreen reserve-link"
+                                                    <a style="color:white" class="badges bg-lightgreen reserve-link activereserve2"
                                                         data-productid="<?php echo $productId; ?>">Reserve</a>
                                                 <?php } else { ?>
                                                     <?php if (mysqli_num_rows($requestResult) > 0) { ?>
                                                         <a style="color:white; margin-top: 0px; margin-right:4px"
                                                             href="product-details.php?id=<?php echo $productId ?>"
                                                             class="badges bg-lightgreen">View</a>
-                                                        <a style="color:white" class="badges bg-lightyellow" href="requestStudent.php">View
+                                                        <a style="color:white" class="badges bg-lightyellow"
+                                                            href="requestStudent.php?id=<?php echo $userID ?>">View
                                                             Request</a>
                                                     <?php } else { ?>
                                                         <a style="color:white; margin-top: 0px; margin-right:4px"
@@ -246,6 +263,7 @@
     <script src="assets/js/request.js"></script>
     <script src="assets/js/reserve.js"></script>
     <script src="assets/js/script.js"></script>
+
 </body>
 
 </html>
