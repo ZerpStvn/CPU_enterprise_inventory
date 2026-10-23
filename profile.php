@@ -9,9 +9,9 @@
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
+    <title>Profile</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -33,8 +33,8 @@
     </div>
 
     <div class="main-wrapper">
-    <?php include 'header.php'; ?>
-    <?php include 'sidebar.php'; ?>
+        <?php include 'header.php'; ?>
+        <?php include 'sidebar.php'; ?>
         <div class="page-wrapper">
             <div class="content">
                 <div class="page-header">
@@ -43,7 +43,36 @@
                         <h6>User Profile</h6>
                     </div>
                 </div>
+                <?php
+                include 'config.php';
 
+                // Check if product ID is provided
+                if (isset($_GET['user_id'])) {
+                    $user_id = $_GET['user_id'];
+
+                    // Retrieve the product details from the database
+                    $sql = "SELECT * FROM users WHERE id = ?";
+                    $stmt = mysqli_prepare($connection, $sql);
+                    mysqli_stmt_bind_param($stmt, "i", $user_id);
+                    mysqli_stmt_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    // Check if the product exists
+                    if (mysqli_num_rows($result) > 0) {
+                        $userdata = mysqli_fetch_assoc($result);
+                    } else {
+                        // Redirect back to the product list page if the product doesn't exist
+                        header("Location: adminRequest.php");
+                        exit();
+                    }
+
+                    mysqli_stmt_close($stmt);
+                } else {
+                    // Redirect back to the product list page if no product ID is provided
+                    header("Location: adminRequest.php");
+                    exit();
+                }
+                ?>
                 <div class="card">
                     <div class="card-body">
                         <div class="profile-set">
@@ -52,68 +81,79 @@
                             <div class="profile-top">
                                 <div class="profile-content">
                                     <div class="profile-contentimg">
-                                        <img src="assets/img/customer/customer5.jpg" alt="img" id="blah">
+                                        <img src="assets/img/avart.jpg" alt="img" id="blah">
                                         <div class="profileupload">
-                                            <input type="file" id="imgInp">
+                                            <!-- <input type="file" id="imgInp">
                                             <a href="javascript:void(0);"><img src="assets/img/icons/edit-set.svg"
-                                                    alt="img"></a>
+                                                    alt="img"></a> -->
                                         </div>
                                     </div>
                                     <div class="profile-contentname">
-                                        <h2>William Castillo</h2>
-                                        <h4>Updates Your Photo and Personal Details.</h4>
+                                        <h2>
+                                            <?php echo $userdata['name'] ?>
+                                        </h2>
+                                        <h4>Personal Details.</h4>
                                     </div>
                                 </div>
-                                <div class="ms-auto">
-                                    <a href="javascript:void(0);" class="btn btn-submit me-2">Save</a>
-                                    <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
-                                </div>
+
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input type="text" placeholder="William">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" placeholder="Castilo">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" placeholder="william@example.com">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" placeholder="+1452 876 5432">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>User Name</label>
-                                    <input type="text" placeholder="+1452 876 5432">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <div class="pass-group">
-                                        <input type="password" class=" pass-input">
-                                        <span class="fas toggle-password fa-eye-slash"></span>
+                        <div class="editactive">
+                            <form action="updateprofile.php" method="post" class="row">
+                                <input type="hidden" name="userid" value="<?php echo $_GET['user_id'] ?>">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" name="fname"
+                                            value="<?php echo isset($_POST['fname']) && !empty($_POST['fname']) ? htmlspecialchars($_POST['fname']) : htmlspecialchars($userdata['name']); ?>"
+                                            placeholder="<?php echo $userdata['name'] ?>">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['role'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['email'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="text" name="phone"
+                                            value="<?php echo isset($_POST['phone']) && !empty($_POST['phone']) ? htmlspecialchars($_POST['phone']) : htmlspecialchars($userdata['mobile_number']); ?>"
+                                            placeholder="<?php echo $userdata['mobile_number'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input type="text" readonly placeholder="<?php echo $userdata['status'] ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <div class="pass-group">
+                                            <input type="password" name="password" class=" pass-input"
+                                                value="<?php echo isset($_POST['password']) && !empty($_POST['password']) ? htmlspecialchars($_POST['password']) : htmlspecialchars($userdata['password']); ?>">
+                                            <span class="fas toggle-password fa-eye-slash"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12">
+                                <input type="submit" class="btn btn-submit me-2">Update</input>
                                 <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
-                            </div>
+                            </div> -->
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-submit me-2" placeholder="update" />
+                                    <a href="student-productlist.php" class="btn btn-cancel">Cancel</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

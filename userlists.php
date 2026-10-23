@@ -45,7 +45,7 @@
                         <h6>Manage your User</h6>
                     </div>
                     <div class="page-btn">
-                        <a href="newuser.html" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img">Add
+                        <a href="newuser.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img">Add
                             User</a>
                     </div>
                 </div>

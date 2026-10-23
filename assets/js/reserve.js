@@ -1,31 +1,47 @@
 $(document).ready(function () {
   $(".reserve-link").on("click", function () {
-    // Get the product ID and other necessary data
+    var date = new Date();
+    var day = date.getDay();
+    var hours = date.getHours();
+
     var productId = $(this).data("productid");
     var userName = '<?php echo $_SESSION["user_name"]; ?>';
     var schoolID = '<?php echo $_SESSION["schoolID"]; ?>';
     var userID = '<?php echo $_SESSION["user_id"]; ?>';
+    var qnty = $("#qnty_" + productId).val();
+    var onstock = $("#onstock_" + productId).val();
 
-    // Create an AJAX request
-    $.ajax({
-      type: "POST",
-      url: "reserveAuth.php",
-      data: {
-        productId: productId,
-        userName: userName,
-        schoolID: schoolID,
-        userID: userID,
-      },
-      success: function (response) {
-        // Reservation was successful
-        alert(response);
-        // Refresh the page to update the inventory
-        location.reload();
-      },
-      error: function () {
-        // Reservation failed
-        alert("Reservation failed. Please try again.");
-      },
-    });
+    var enteredQuantity = parseInt(qnty);
+    if (isNaN(enteredQuantity) || enteredQuantity < 0) {
+      swal("Enter a valid Quantity", "CPU ENTERPRISE", "error");
+    } else if (enteredQuantity > onstock) {
+      swal("Entered Quantity exceeds on stock", "CPU ENTERPRISE", "error");
+    } else {
+      $.ajax({
+        type: "POST",
+        url: "reserveAuth.php",
+        data: {
+          productId: productId,
+          userName: userName,
+          schoolID: schoolID,
+          userID: userID,
+          qnty: qnty,
+        },
+        success: function () {
+          swal("Reservation Sent", "CPU ENTERPRISE", "success").then(
+            function () {
+              location.reload();
+            }
+          );
+        },
+        error: function () {
+          swal(
+            "Reservation failed. Please try again.",
+            "CPU ENTERPRISE",
+            "error"
+          );
+        },
+      });
+    }
   });
 });

@@ -9,9 +9,8 @@
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
+    <title>Product | Details</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -58,7 +57,6 @@
                     mysqli_stmt_bind_param($stmt, "i", $productId);
                     mysqli_stmt_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
-
                     // Check if the product exists
                     if (mysqli_num_rows($result) > 0) {
                         $product = mysqli_fetch_assoc($result);
@@ -90,11 +88,14 @@
                                     <ul class="product-bar">
                                         <li>
                                             <h4>
-                                                <?php echo $product['product_name']; ?>
+                                                Product name
                                             </h4>
+                                            <h6>
+                                                <?php echo $product['product_name']; ?>
+                                            </h6>
                                         </li>
                                         <li>
-                                            <h4>Category</h4>
+                                            <h4>Product set</h4>
                                             <h6>
                                                 <?php echo $product['category']; ?>
                                             </h6>
@@ -108,13 +109,13 @@
                                         <li>
                                             <h4>on stock</h4>
                                             <h6>
-                                                <?php echo $product['on_stock']; ?>
+                                                <?php echo $product['minimum_quantity']; ?>
                                             </h6>
                                         </li>
                                         <li>
-                                            <h4>Quantity</h4>
+                                            <h4>Stock level</h4>
                                             <h6>
-                                                <?php echo $product['minimum_quantity']; ?>
+                                                <?php echo $product['on_stock']; ?>
                                             </h6>
                                         </li>
                                         <li>
@@ -146,7 +147,7 @@
                                 <div class="slider-product-details">
                                     <div class="owl-carousel owl-theme product-slide">
                                         <div class="slider-product">
-                                            <img src="<?php echo $product['image']; ?>" alt="img">
+                                            <img style="margin:auto;" src="<?php echo $product['image']; ?>" alt="img">
                                             <h4>
                                                 <?php echo $product['product_name']; ?>
                                             </h4>

@@ -54,9 +54,9 @@
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Category</label>
+                  <label>category</label>
                   <select class="select" name="category">
-                    <option>Choose Category</option>
+                    <option>category</option>
                     <?php
                     // Retrieve category data from the database
                     include 'config.php';
@@ -82,7 +82,7 @@
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Minimum Qty</label>
+                  <label>Stock level</label>
                   <input type="text" name="minimum_quantity" />
                 </div>
               </div>
@@ -98,12 +98,12 @@
                   <textarea class="form-control" name="description"></textarea>
                 </div>
               </div>
-              <div class="col-lg-3 col-sm-6 col-12">
+              <!-- <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Price</label>
-                  <input type="text" name="price" />
+                  <input type="hidden" name="price" />
                 </div>
-              </div>
+              </div> -->
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Status</label>

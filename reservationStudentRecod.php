@@ -77,8 +77,8 @@
                             <tbody>
                                 <?php
                                 require_once 'config.php';
-
-                                $query = "SELECT * FROM reservations";
+                                $usrid = $_GET['id'];
+                                $query = "SELECT * FROM reservations WHERE userID = $usrid";
                                 $result = mysqli_query($connection, $query);
 
                                 if (mysqli_num_rows($result) > 0) {
@@ -90,7 +90,21 @@
                                         $productImage = $row['image'];
                                         $productName = $row['product_name'];
                                         $date = $row['date'];
+                                        $reservationTime = strtotime($date); // Convert to Unix timestamp
+                                        $currentTime = time();
+                                        $hoursDifference = ($currentTime - $reservationTime) / 3600; // Calculate difference in hours
+                                
+                                        $datehrs = new DateTime($date);
+                                        $formattedDate = $datehrs->format('F j, Y g:i a');
                                         $status = $row['status'];
+
+                                        if ($hoursDifference >= 42 && $status == 0) {
+                                            $statusLabel = "<span class='badges bg-lightred'>Expired</span>";
+                                        } elseif ($status == 0) {
+                                            $statusLabel = "<span class='badges bg-lightred'>Pending</span>";
+                                        } else {
+                                            $statusLabel = "<span class='badges bg-lightgreen'>Claimed</span>";
+                                        }
                                         ?>
                                         <tr>
                                             <td>
@@ -111,29 +125,36 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <?php echo $date; ?>
+                                                <?php echo $formattedDate; ?>
                                             </td>
                                             <td>
-                                                <?php if ($status == 0): ?>
-                                                    <span class="badges bg-lightred">Pending</span>
+                                                <?php if ($hoursDifference >= 72 && $status == 0): ?>
+                                                    <span class="badges bg-lightred">Expired</span>
+                                                    <span class="badges bg-lightyellow"><a style="color:white;"
+                                                            href="cancelres.php?id=<?php echo $reservationId ?>">Delete</a></span>
+                                                <?php elseif ($status == 0): ?>
+                                                    <span class="badges bg-lightred">Unclaimed</span>
+                                                    <span class="badges bg-lightyellow"><a style="color:white;"
+                                                            href="cancelres.php?id=<?php echo $reservationId ?>">Cancel</a></span>
                                                 <?php else: ?>
-                                                    <span class="badges bg-lightgreen">Accepted</span>
+                                                    <span class="badges bg-lightgreen">Claimed</span>
                                                 <?php endif; ?>
                                             </td>
+
                                         </tr>
                                         <?php
                                     }
                                 } else {
                                     ?>
                                     <tr>
-                                        <td colspan=" 6">No reservation data found
-                                        </td>
+                                        <td colspan="6">No reservation data found</td>
                                     </tr>
                                     <?php
                                 }
 
                                 mysqli_close($connection);
                                 ?>
+
                             </tbody>
                         </table>
 

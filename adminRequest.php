@@ -30,12 +30,10 @@
 </head>
 
 <body>
-    <div id="global-loader">
+    <!-- <div id="global-loader">
         <div class="whirly-loader"> </div>
-    </div>
-    <?php
-    session_start();
-    ?>
+    </div> -->
+
     <div class="main-wrapper">
         <?php include 'header.php'; ?>
         <?php include 'sidebar.php'; ?>
@@ -127,6 +125,7 @@
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         $reservationId = $row['id'];
+                                        $prodID = $row['productid'];
                                         $userName = $row['userName'];
                                         $schoolID = $row['schoolID'];
                                         $sku = $row['sku'];
@@ -157,8 +156,11 @@
                                                 <?php echo $date; ?>
                                             </td>
                                             <td>
-                                                <span class="badges bg-lightgreen">Requested</span>
-
+                                                <a style="color: white;"
+                                                    href="requestdetails.php?reqid=<?php echo $reservationId; ?>prodid=<?php echo $prodID; ?>">
+                                                    <span style="cursor:pointer" class="badges bg-lightred">
+                                                        View Request
+                                                    </span></a>
                                             </td>
                                         </tr>
                                         <?php

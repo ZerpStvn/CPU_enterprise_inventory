@@ -61,11 +61,11 @@
                 </div>
               </div>
               <div class="form-login">
-                <div class="alreadyuser">
+                <!-- <div class="alreadyuser">
                   <h4>
                     <a href="forgetpassword.php" class="hover-a">Forgot Password?</a>
                   </h4>
-                </div>
+                </div> -->
               </div>
               <div class="form-login">
                 <button type="submit" class="btn btn-login">Sign In</button>
@@ -75,7 +75,7 @@
             <div class="signinform text-center">
               <h4>
                 Dont have an account?
-                <a href="signup.php" class="hover-a">Sign Up</a>
+                <a href="signup.php" class="hover-a">Register</a>
               </h4>
             </div>
           </div>

@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/restock.css">
 </head>
 
 <body>
@@ -35,7 +36,18 @@
   <div class="main-wrapper">
     <?php include 'header.php'; ?>
     <?php include 'sidebar.php'; ?>
+
     <div class="page-wrapper">
+      <?php
+      include 'config.php';
+
+      // Fetch inventory data from the database
+      $sql = "SELECT * FROM inventory";
+      $result = mysqli_query($connection, $sql);
+
+      ?>
+
+
       <div class="content">
         <div class="page-header">
           <div class="page-title">
@@ -52,102 +64,47 @@
           <div class="card-body">
             <div class="table-top">
               <div class="search-set">
-                <div class="search-path">
-                  <a class="btn btn-filter" id="filter_search">
-                    <img src="assets/img/icons/filter.svg" alt="img" />
-                    <span><img src="assets/img/icons/closes.svg" alt="img" /></span>
-                  </a>
-                </div>
+
                 <div class="search-input">
                   <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img" /></a>
                 </div>
               </div>
-              <div class="wordset">
-                <ul>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="assets/img/icons/pdf.svg"
-                        alt="img" /></a>
-                  </li>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                        src="assets/img/icons/excel.svg" alt="img" /></a>
-                  </li>
-                  <li>
-                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                        src="assets/img/icons/printer.svg" alt="img" /></a>
-                  </li>
-                </ul>
-              </div>
+
             </div>
 
-            <div class="card mb-0" id="filter_inputs">
+            <div class="card mb-0">
               <div class="card-body pb-0">
                 <div class="row">
                   <div class="col-lg-12 col-sm-12">
                     <div class="row">
                       <div class="col-lg col-sm-6 col-12">
                         <div class="form-group">
-                          <select class="select">
-                            <option>Choose Product</option>
-                            <option>Macbook pro</option>
-                            <option>Orange</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Choose Category</option>
-                            <option>Computers</option>
-                            <option>Fruits</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Choose Sub Category</option>
-                            <option>Computer</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Brand</option>
-                            <option>N/D</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg col-sm-6 col-12">
-                        <div class="form-group">
-                          <select class="select">
-                            <option>Price</option>
-                            <option>150.00</option>
+                          <select class="select" id="productFilter">
+                            <option value="">Select Category</option>
+                            <?php
+                            $query = "SELECT DISTINCT category FROM inventory";
+                            $resultview = mysqli_query($connection, $query);
+
+                            if ($resultview) {
+                              while ($row = mysqli_fetch_assoc($resultview)) {
+                                $product = $row['category'];
+                                echo '<option value="' . $product . '">' . $product . '</option>';
+                              }
+
+                              mysqli_free_result($resultview);
+                            }
+                            ?>
                           </select>
                         </div>
                       </div>
                       <div class="col-lg-1 col-sm-6 col-12">
-                        <div class="form-group">
-                          <a class="btn btn-filters ms-auto"><img src="assets/img/icons/search-whites.svg"
-                              alt="img" /></a>
-                        </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <?php
-            include 'config.php';
-
-            // Fetch inventory data from the database
-            $sql = "SELECT * FROM inventory";
-            $result = mysqli_query($connection, $sql);
-
-            ?>
-
             <div class="table-responsive">
               <table class="table datanew">
                 <thead>
@@ -174,8 +131,77 @@
                       $onStock = $row['on_stock'];
                       $status = $row['status'];
                       $image = $row['image'];
-                      ?>
 
+                      ?>
+                      <div class="restock-value restock-value-<?php echo $productId; ?>">
+
+                        <div class="inputcontainer">
+                          <a href="" class="closedid"><img src="assets/img/closed.svg" alt=""></a>
+                          <h4 class="form-stock-h4" style="text-align:center; font-size:28px">Select Option</h4>
+                          <div style="display:flex;">
+                            <button class="btn btn-submit me-2 stock-in-button" data-product-id="<?php echo $productId; ?>"
+                              data-on-stock="<?php echo $onStock; ?>">Stock in</button>
+                            <button class="btn btn-submit me-2 stock-out-button" data-product-id="<?php echo $productId; ?>"
+                              data-on-stock="<?php echo $onStock; ?>">Stock out</button>
+                          </div>
+                          <div class="stock-in-form" data-product-id="<?php echo $productId; ?>"
+                            data-on-stock="<?php echo $onStock; ?>">
+                            <form class="cardformstock" action="updatestock.php" method="POST" id="restockid">
+                              <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
+                              <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
+                              <label style="font-size:24px">STOCK AVAILABILITY</label>
+                              <div style="display:flex; gap:10px;">
+
+                                <input readonly type="hidden" name="stockinuser" id="stockinuser"
+                                  value="<?php echo $user_name; ?>" style="height: 30px; width: 50%; padding-left:10px;" />
+                                <input readonly type="hidden" name="stockinuserrole" id="stockinuserrole"
+                                  value="<?php echo $user_role; ?>" style="height: 30px; width: 50%; padding-left:10px" />
+
+                              </div>
+                              <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
+                                style="height: 50px; width: 95%; padding-left:10px" />
+                              <input readonly type="hidden" name="prodid" id="prodid" value="<?php echo $productId; ?>"
+                                style="height: 30px; width: 50%; padding-left:10px" />
+                              <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
+                                style="height: 30px; width: 50%; padding-left:10px" />
+                              <div>
+                                <button type="submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
+                                <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
+                              </div>
+                            </form>
+                          </div>
+
+                          <!-- stockout -->
+                          <div class="stock-in-out" data-product-id="<?php echo $productId; ?>"
+                            data-on-stock="<?php echo $onStock; ?>">
+                            <form class="cardformstock" action="stockout.php" method="POST" id="restockid">
+                              <input type="hidden" name="id" id="product_id" value="<?php echo $productId; ?>">
+                              <input type="hidden" name="current_stock" id="current_stock" value="<?php echo $onStock; ?>">
+                              <label style="font-size:24px">STOCK OUT</label>
+                              <div style="display:flex; gap:10px;">
+
+                                <input readonly type="hidden" name="stockinuser" id="stockinuser"
+                                  value="<?php echo $user_name; ?>" style="height: 30px; width: 50%; padding-left:10px;" />
+                                <input readonly type="hidden" name="stockinuserrole" id="stockinuserrole"
+                                  value="<?php echo $user_role; ?>" style="height: 30px; width: 50%; padding-left:10px" />
+
+                              </div>
+                              <input type="text" name="on_stock" id="on_stock" placeholder="Stock value"
+                                style="height: 50px; width: 80%; padding-left:10px" />
+
+                              <textarea name="rsn" id="rsn" rows="10"
+                                style="height: 70px;  resize: none; width: 80%; padding-left:10px" placeholder="
+                                Reason"></textarea>
+                              <input readonly type="hidden" name="numsku" id="numsku" value="<?php echo $sku; ?>"
+                                style="height: 30px; width: 50%; padding-left:10px" />
+                              <div>
+                                <button type=" submit" class="btn btn-submit me-2" id="stock-in-button">Submit</button>
+                                <a href="productlist.php" id="stock-cancel" class="btn btn-submit me-2">Cancel</a>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                       <tr>
                         <td class="productimgname">
                           <a href="javascript:void(0);" class="product-img">
@@ -188,7 +214,7 @@
                         <td>
                           <?php echo $sku; ?>
                         </td>
-                        <td>
+                        <td class="categorynameid">
                           <?php echo $category; ?>
                         </td>
                         <td>
@@ -204,9 +230,10 @@
                           <a class="me-3" href="product-details.php?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/eye.svg" alt="img" />
                           </a>
-                          <a class="me-3" href="editproduct.php?id=<?php echo $productId; ?>">
+                          <a class="me-3 stock-open" data-target=".restock-value-<?php echo $productId; ?>">
                             <img src="assets/img/icons/edit.svg" alt="img" />
                           </a>
+
                           <a class="confirm-text" href="productdelete.php?id=<?php echo $productId; ?>">
                             <img src="assets/img/icons/delete.svg" alt="img" />
                           </a>
@@ -249,6 +276,27 @@
     <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/modalsotck.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#productFilter').on('change', function () {
+          var selectedProduct = $(this).val().trim();  // Get the selected option's value
+
+          $('.table.datanew tbody tr').each(function () {
+            var category = $(this).find('.categorynameid').text().trim(); // Get the category from the current row
+
+            if (selectedProduct === '' || selectedProduct === category) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
+        // Initially, trigger the change event to show all rows
+        $('#productFilter').trigger('change');
+      });
+
+    </script>
 </body>
 
 </html>
